@@ -1,6 +1,7 @@
 <script>
   import { page } from "$app/stores";
-  let user = $page.params.user;
+  const host = $page.url.host;
+  const user = $page.params.user;
 </script>
 
 <div class="modal-wrapper">
@@ -8,12 +9,17 @@
     <h3 class="title">Create a new site?</h3>
     <div class="seperator" />
     <p class="info">
-      Great! This site doesn't exist, it can be yours! Would you like to create:
+      Great! This site doesn't exist, you can make it yours.
     </p>
-    <div class="user-info-wrapper"><h3 class="user-info">{user}</h3></div>
+    <div class="user-info-wrapper">
+      <div class="user-info">
+        <span class="host-name">securedtext.com/</span>{user}
+      </div>
+      <div class="seperator" />
+    </div>
     <div class="button-wrapper">
       <button class="secondary">Cancel</button>
-      <button class="primary">Create Site</button>
+      <button class="primary">Create</button>
     </div>
   </div>
 </div>
@@ -32,39 +38,74 @@
   }
 
   .modal {
-    padding: 15px;
+    padding: 15px 25px;
     width: 300px;
     background-color: white;
     border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .title {
     font-weight: 500;
-    margin-bottom: 10px;
+    width: 100%;
+    margin-bottom: 11px;
+  }
+
+  .seperator {
+    height: 1px;
+    width: inherit;
+    background-color: rgb(223, 227, 230);
   }
 
   .info {
-    margin-bottom: 5px;
-    font-size: 15px;
+    margin: 15px 0 20px;
+    width: 100%;
+    font-size: 14px;
+    line-height: 20px;
     opacity: 0.9;
   }
 
+  .user-info-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+
+  .user-info {
+    background-color: rgb(248, 248, 248);
+    border-radius: 10px;
+    padding: 5px 10px;
+    font-size: 15px;
+    font-weight: 500;
+    word-break: break-all;
+    text-align: center;
+    letter-spacing: 1px;
+  }
+
+  .host-name {
+    opacity: 0.6;
+    font-weight: 400;
+  }
+
   .button-wrapper {
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    column-gap: 12px;
+    column-gap: 5px;
   }
 
   button {
-    height: 40px;
+    height: 35px;
     border: none;
     outline: none;
     font-size: 14px;
     font-weight: 500;
     border-radius: 10px;
     cursor: pointer;
-    padding: 0 20px;
+    padding: 0 15px;
     transition: all 200ms ease-in-out;
     will-change: transform;
   }
@@ -74,12 +115,15 @@
   }
 
   .primary {
-    background-color: rgb(0, 114, 245);
-    color: white;
+    background-color: rgb(206, 228, 254);
+    color: rgb(0, 114, 245);
   }
 
   .secondary {
-    background-color: rgb(252, 197, 216);
-    color: rgb(243, 18, 96);
+    background-color: transparent;
+  }
+
+  .secondary:hover {
+    background-color: rgb(239, 239, 239);
   }
 </style>
