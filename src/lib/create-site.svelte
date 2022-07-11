@@ -1,8 +1,8 @@
 <script>
   import { onMount } from "svelte";
-  import { scale, fade} from "svelte/transition";
+  import { scale, fade } from "svelte/transition";
   import { page } from "$app/stores";
-  import { showModal } from "./store";
+  import { showModal, showAddSiteModal, showAddPassModal } from "./store";
 
   const host = $page.url.host;
   const user = $page.params.user;
@@ -16,9 +16,16 @@
     start: 0.6,
   };
 
-  const handleClick = () => {
+  const handleCancel = () => {
     $showModal = false;
   };
+  
+
+  const handleCreate = () => {
+    $showAddSiteModal = false
+    $showAddPassModal = true;
+  };
+
 </script>
 
 {#if $showModal}
@@ -34,8 +41,8 @@
         <div class="seperator" />
       </div>
       <div class="button-wrapper">
-        <button on:click={handleClick} class="secondary">Cancel</button>
-        <button class="primary">Create</button>
+        <button on:click={handleCancel} class="secondary">Cancel</button>
+        <button on:click={handleCreate} class="primary">Create</button>
       </div>
     </div>
   </div>
