@@ -5,11 +5,12 @@
 
 <div class="modal-wrapper">
   <div class="modal">
-    <h2>Create a new site?</h2>
-    <p>
+    <h3 class="title">Create a new site?</h3>
+    <div class="seperator" />
+    <p class="info">
       Great! This site doesn't exist, it can be yours! Would you like to create:
     </p>
-    <h2>{user}</h2>
+    <div class="user-info-wrapper"><h3 class="user-info">{user}</h3></div>
     <div class="button-wrapper">
       <button class="secondary">Cancel</button>
       <button class="primary">Create Site</button>
@@ -18,12 +19,6 @@
 </div>
 
 <style>
-  @import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap");
-  * {
-    font-family: "Inter", sans-serif;
-    box-sizing: border-box;
-  }
-
   .modal-wrapper {
     position: absolute;
     top: 0;
@@ -37,9 +32,21 @@
   }
 
   .modal {
-    padding: 25px;
+    padding: 15px;
+    width: 300px;
     background-color: white;
     border-radius: 20px;
+  }
+
+  .title {
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  .info {
+    margin-bottom: 5px;
+    font-size: 15px;
+    opacity: 0.9;
   }
 
   .button-wrapper {
