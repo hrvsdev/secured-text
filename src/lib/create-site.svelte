@@ -1,6 +1,6 @@
 <script>
   import { onMount } from "svelte";
-  import { scale, fade, slide, fly } from "svelte/transition";
+  import { scale, fade} from "svelte/transition";
   import { page } from "$app/stores";
   import { showModal } from "./store";
 
