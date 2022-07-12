@@ -27,7 +27,8 @@ const checkUser = async (user) => {
   try {
     const snap = await getDocs(q);
     const data = snap.docs.map((doc) => doc.data())
-    return data
+    console.log(data)
+    return {user: data, success: true}
   } catch (err) {
     console.log(err);
   }
