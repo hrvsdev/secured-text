@@ -23,11 +23,27 @@ const addUser = async (data) => {
 };
 
 const checkUser = async (user) => {
-  const q = query(usersRef, where("name", "==", user));
+  const q = query(usersRef, where("user", "==", user));
   try {
     const snap = await getDocs(q);
-    const data = snap.docs.map((doc) => doc.data())
-    return data
+    const data = snap.docs.map((doc) => doc.data());
+    if (data.length) return true;
+    return false;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const getUser = async (user, password) => {
+  const q = query(
+    usersRef,
+    where("user", "==", user),
+    where("password", "==", password)
+  );
+  try {
+    const snap = await getDocs(q);
+    const data = snap.docs.map((doc) => doc.data());
+    return data;
   } catch (err) {
     console.log(err);
   }
@@ -41,4 +57,4 @@ const addNote = async (data) => {
   }
 };
 
-export { db, usersRef, notesRef, addUser, checkUser, addNote };
+export { db, usersRef, notesRef, addUser, checkUser, getUser, addNote };

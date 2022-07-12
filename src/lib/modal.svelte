@@ -12,7 +12,7 @@
   import EnterPassword from "./enter-password/enter-password.svelte";
   import Loader from "./loader.svelte";
 
-  let data = [];
+  let userState = false;
   let loading = true;
   const user = $page.params.user;
 
@@ -26,7 +26,7 @@
   };
 
   onMount(async () => {
-    data = await checkUser(user);
+    userState = await checkUser(user);
     setTimeout(() => {
       loading = false;
     }, 300);
@@ -39,7 +39,7 @@
   {:else}
     <div transition:fade={modalWrapAnim} class="modal-wrapper">
       <div transition:scale={modalAnim} class="modal">
-        {#if data.length}
+        {#if userState}
           <EnterPassword />
         {:else if $showAddSiteModal}
           <CreateSite />
@@ -56,8 +56,8 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     background: rgba(0, 0, 0, 0.2);
     display: flex;
     justify-content: center;

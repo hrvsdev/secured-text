@@ -1,9 +1,12 @@
 <script>
+  import { page } from "$app/stores";
   import { goto } from "$app/navigation";
+  import { addUser } from "../../firebase/db";
+
+  const user = $page.params.user;
 
   let passErr = false;
   let confirmPassErr = false;
-
   let password = "";
   let confirmPass = "";
 
@@ -18,7 +21,7 @@
     if (password.trim().length < 6) return (passErr = true);
     if (password.trim() != confirmPass.trim()) return (confirmPassErr = true);
 
-    console.log("Successful");
+    addUser({user, password});
   };
 </script>
 

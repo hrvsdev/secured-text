@@ -1,20 +1,24 @@
 <script>
   import { goto } from "$app/navigation";
+  import { page } from "$app/stores";
+  import { showModal } from "../store";
+  import { getUser } from "../../firebase/db";
 
   let passErr = false;
-
   let password = "";
+
+  const user = $page.params.user;
 
   const handleCancel = () => {
     goto("/");
   };
 
-  const handleConfirm = () => {
+  const handleConfirm = async () => {
     passErr = false;
 
-    if (password.trim() != "123456") return (passErr = true);
-
-    console.log("Successful");
+    const res = await getUser(user, password);
+    if (res.length) return ($showModal = false);
+    return (passErr = true);
   };
 </script>
 
@@ -22,8 +26,8 @@
   <h3 class="title">Enter password</h3>
   <div class="seperator" />
   <p class="info">
-    This site is already occupied. If this belongs to you, enter the password, or
-    you can try using different site. <br>
+    This site is already occupied. If this belongs to you, enter the password,
+    or you can try using different site. <br />
   </p>
   <div class="input-wrapper">
     <label class:passErr for="pass">Password</label>
@@ -95,7 +99,7 @@
     box-shadow: inset rgb(0, 114, 245) 0 0 0 1px, inset #fff 0 0 0 100px;
   }
 
-  .pass-error{
+  .pass-error {
     font-size: 12px;
     padding-left: 4px;
     color: #f33;
@@ -109,7 +113,7 @@
     color: #f33;
   }
 
-  input.passErr{
+  input.passErr {
     box-shadow: inset #f33 0 0 0 1px, inset #fff 0 0 0 100px;
   }
 
