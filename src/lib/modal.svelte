@@ -10,7 +10,7 @@
   import CreateSite from "./create-new-site/create-site.svelte";
   import AddPassword from "./create-new-site/add-password.svelte";
   import EnterPassword from "./enter-password/enter-password.svelte";
-  import ModalLoading from "./modal-loading.svelte"
+  import Loader from "./loader.svelte";
 
   let data = [];
   let loading = true;
@@ -27,24 +27,28 @@
 
   onMount(async () => {
     data = await checkUser(user);
-    loading = false;
+    // setTimeout(() => {
+    //   loading = false;
+    // }, 500);
   });
 </script>
 
 {#if $showModal}
-  <div transition:fade={modalWrapAnim} class="modal-wrapper">
-    <div transition:scale={modalAnim} class="modal">
-      {#if loading}
-        <ModalLoading />
-      {:else if data.length}
-        <EnterPassword />
-      {:else if $showAddSiteModal}
-        <CreateSite />
-      {:else if $showAddPassModal}
-        <AddPassword />
-      {/if}
+  {#if loading}
+    <Loader />
+  {:else}
+    <div transition:fade={modalWrapAnim} class="modal-wrapper">
+      <div transition:scale={modalAnim} class="modal">
+        {#if data.length}
+          <EnterPassword />
+        {:else if $showAddSiteModal}
+          <CreateSite />
+        {:else if $showAddPassModal}
+          <AddPassword />
+        {/if}
+      </div>
     </div>
-  </div>
+  {/if}
 {/if}
 
 <style>

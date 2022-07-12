@@ -1,14 +1,27 @@
-<div class="modal-loading">
+<div class="loader-wrapper">
   <span class="loader" />
 </div>
 
 <style>
-  .modal-loading {
-    min-height: 234px;
+  :global(body) {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .loader-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     display: flex;
+    background-color: white;
     justify-content: center;
     align-items: center;
   }
+
   .loader {
     width: 48px;
     height: 48px;
