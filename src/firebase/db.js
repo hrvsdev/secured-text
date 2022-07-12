@@ -1,7 +1,11 @@
 import {
   addDoc,
   collection,
+  doc,
+  getDocs,
   getFirestore,
+  query,
+  where,
 } from "firebase/firestore";
 import app from "./config";
 
@@ -18,6 +22,16 @@ const addUser = async (data) => {
   }
 };
 
+const checkUser = async (user) => {
+  const q = query(usersRef, where("name", "==", user));
+  try {
+    const snap = await getDocs(q);
+    console.log(snap.docs.map((doc) => doc.data()));
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 const addNote = async (data) => {
   try {
     await addDoc(notesRef, data);
@@ -26,4 +40,4 @@ const addNote = async (data) => {
   }
 };
 
-export { db, usersRef, notesRef, addUser, addNote };
+export { db, usersRef, notesRef, addUser, checkUser, addNote };

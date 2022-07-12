@@ -1,5 +1,6 @@
 <script>
   import { fade, scale } from "svelte/transition";
+  import { onMount } from "svelte";
   import { page } from "$app/stores";
 
   import {
@@ -23,12 +24,15 @@
     duration: 250,
     start: 0.6,
   };
+
+  onMount
+
 </script>
 
 {#if $showModal}
   <div transition:fade={modalWrapAnim} class="modal-wrapper">
     <div transition:scale={modalAnim} class="modal">
-      {#if user === "hrvs"}
+      {#if user === "1234567898765434567"}
         <EnterPassword />
       {:else if $showAddSiteModal}
         <CreateSite />
