@@ -27,9 +27,9 @@
 
   onMount(async () => {
     data = await checkUser(user);
-    // setTimeout(() => {
-    //   loading = false;
-    // }, 500);
+    setTimeout(() => {
+      loading = false;
+    }, 500);
   });
 </script>
 
