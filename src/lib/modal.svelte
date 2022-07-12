@@ -3,17 +3,17 @@
   import { onMount } from "svelte";
   import { page } from "$app/stores";
 
-  import {
-    showModal,
-    showAddSiteModal,
-    showAddPassModal,
-    showEnterPassModal,
-  } from "./store";
+  import { checkUser } from "../firebase/db";
+
+  import { showModal, showAddSiteModal, showAddPassModal } from "./store";
 
   import CreateSite from "./create-new-site/create-site.svelte";
   import AddPassword from "./create-new-site/add-password.svelte";
   import EnterPassword from "./enter-password/enter-password.svelte";
+  import ModalLoading from "./modal-loading.svelte"
 
+  let data = [];
+  let loading = true;
   const user = $page.params.user;
 
   const modalWrapAnim = {
@@ -25,14 +25,18 @@
     start: 0.6,
   };
 
-  onMount
-
+  onMount(async () => {
+    data = await checkUser(user);
+    loading = false;
+  });
 </script>
 
 {#if $showModal}
   <div transition:fade={modalWrapAnim} class="modal-wrapper">
     <div transition:scale={modalAnim} class="modal">
-      {#if user === "1234567898765434567"}
+      {#if loading}
+        <ModalLoading />
+      {:else if data.length}
         <EnterPassword />
       {:else if $showAddSiteModal}
         <CreateSite />

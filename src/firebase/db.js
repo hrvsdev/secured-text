@@ -26,7 +26,9 @@ const checkUser = async (user) => {
   const q = query(usersRef, where("name", "==", user));
   try {
     const snap = await getDocs(q);
-    console.log(snap.docs.map((doc) => doc.data()));
+    const data = snap.docs.map((doc) => doc.data())
+    console.log(data);
+    return data
   } catch (err) {
     console.log(err);
   }
