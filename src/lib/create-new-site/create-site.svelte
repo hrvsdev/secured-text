@@ -1,70 +1,40 @@
 <script>
-  import { onMount } from "svelte";
-  import { scale, fade } from "svelte/transition";
   import { page } from "$app/stores";
-  import { showModal, showAddSiteModal, showAddPassModal } from "./store";
+  import { showModal, showAddSiteModal, showAddPassModal } from "../store";
 
   const host = $page.url.host;
   const user = $page.params.user;
 
-  const modalWrapAnim = {
-    duration: 200,
-  };
-
-  const modalAnim = {
-    duration: 250,
-    start: 0.6,
-  };
-
   const handleCancel = () => {
     $showModal = false;
   };
-  
 
   const handleCreate = () => {
-    $showAddSiteModal = false
+    $showAddSiteModal = false;
     $showAddPassModal = true;
   };
-
+  
 </script>
 
-{#if $showModal}
-  <div transition:fade={modalWrapAnim} class="modal-wrapper">
-    <div transition:scale={modalAnim} class="modal">
-      <h3 class="title">Create a new site?</h3>
-      <div class="seperator" />
-      <p class="info">Great! This site doesn't exist, you can make it yours.</p>
-      <div class="user-info-wrapper">
-        <div class="user-info">
-          <span class="host-name">securedtext.com/</span>{user}
-        </div>
-        <div class="seperator" />
-      </div>
-      <div class="button-wrapper">
-        <button on:click={handleCancel} class="secondary">Cancel</button>
-        <button on:click={handleCreate} class="primary">Create</button>
-      </div>
+<div class="add-site-modal">
+  <h3 class="title">Create a new site?</h3>
+  <div class="seperator" />
+  <p class="info">Great! This site doesn't exist, you can make it yours.</p>
+  <div class="user-info-wrapper">
+    <div class="user-info">
+      <span class="host-name">securedtext.com/</span>{user}
     </div>
   </div>
-{/if}
+  <div class="button-wrapper">
+    <button on:click={handleCancel} class="secondary">Cancel</button>
+    <button on:click={handleCreate} class="primary">Create</button>
+  </div>
+</div>
 
 <style>
-  .modal-wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .modal {
+  .add-site-modal {
+    width: inherit;
     padding: 15px 25px;
-    width: 300px;
-    background-color: white;
     border-radius: 20px;
     display: flex;
     flex-direction: column;

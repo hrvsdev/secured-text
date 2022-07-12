@@ -1,5 +1,5 @@
 <script>
-  import CreateSite from "../lib/create-site.svelte"
+  import CreateNewSite from "../lib/modal.svelte"
 </script>
 
-<CreateSite/>
+<CreateNewSite/>
