@@ -1,5 +1,5 @@
 <script>
-  import Modal from "../lib/modal.svelte"
+  import Text from "../lib/text.svelte"
 </script>
 
-<Modal/>
+<Text/>

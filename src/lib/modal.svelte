@@ -1,6 +1,7 @@
 <script>
   import { fade, scale } from "svelte/transition";
   import { onMount } from "svelte";
+  import {writab}
   import { page } from "$app/stores";
 
   import { checkUser } from "../firebase/db";
@@ -29,7 +30,7 @@
     userState = await checkUser(user);
     setTimeout(() => {
       loading = false;
-    }, 300);
+    }, 50);
   });
 </script>
 

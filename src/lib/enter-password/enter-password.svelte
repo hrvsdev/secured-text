@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from "svelte";
   import { goto } from "$app/navigation";
   import { page } from "$app/stores";
   import { showModal } from "../store";
@@ -16,9 +17,8 @@
   const handleConfirm = async () => {
     passErr = false;
 
-    const res = await getUser(user, password);
-    if (res.length) return ($showModal = false);
-    return (passErr = true);
+    if ($userData.password != password) return (passErr = true);
+    return ($showModal = false);
   };
 </script>
 
