@@ -2,8 +2,9 @@
   import { onMount } from "svelte";
   import { goto } from "$app/navigation";
   import { page } from "$app/stores";
-  import { showModal } from "../store";
+  import { showModal } from "../modal.svelte";
   import { getUser } from "../../firebase/db";
+  import { userData } from "../modal.svelte";
 
   let passErr = false;
   let password = "";
@@ -16,8 +17,7 @@
 
   const handleConfirm = async () => {
     passErr = false;
-
-    if ($userData.password != password) return (passErr = true);
+    if ($userData[0].password != password) return (passErr = true);
     return ($showModal = false);
   };
 </script>

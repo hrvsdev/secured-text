@@ -1,22 +1,33 @@
+<script context="module">
+  import { writable } from "svelte/store";
+
+  export const userData = writable([]);
+
+  export const showModal = writable(true);
+  export const showAddSiteModal = writable(true);
+  export const showAddPassModal = writable(false);
+  export const showEnterPassModal = writable(false);
+</script>
+
 <script>
   import { fade, scale } from "svelte/transition";
   import { onMount } from "svelte";
-  import {writab}
   import { page } from "$app/stores";
 
-  import { checkUser } from "../firebase/db";
-
-  import { showModal, showAddSiteModal, showAddPassModal } from "./store";
+  import { getUser } from "../firebase/db";
 
   import CreateSite from "./create-new-site/create-site.svelte";
   import AddPassword from "./create-new-site/add-password.svelte";
   import EnterPassword from "./enter-password/enter-password.svelte";
   import Loader from "./loader.svelte";
 
-  let userState = false;
+  // Loading state for data fetching
   let loading = true;
+
+  // Getting user param
   const user = $page.params.user;
 
+  // Modal Animations
   const modalWrapAnim = {
     duration: 200,
   };
@@ -26,11 +37,12 @@
     start: 0.6,
   };
 
+  // Getting data on first load
   onMount(async () => {
-    userState = await checkUser(user);
+    $userData = await getUser(user);
     setTimeout(() => {
       loading = false;
-    }, 50);
+    }, 100);
   });
 </script>
 
@@ -40,7 +52,7 @@
   {:else}
     <div transition:fade={modalWrapAnim} class="modal-wrapper">
       <div transition:scale={modalAnim} class="modal">
-        {#if userState}
+        {#if $userData.length}
           <EnterPassword />
         {:else if $showAddSiteModal}
           <CreateSite />

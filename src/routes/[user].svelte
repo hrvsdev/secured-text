@@ -1,5 +1,5 @@
 <script>
-  import Text from "../lib/text.svelte"
+  import Note from "../lib/note.svelte"
 </script>
 
-<Text/>
+<Note/>
