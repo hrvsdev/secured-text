@@ -1,8 +1,9 @@
 <script>
-  const bcrypt = require("bcrypt");
   import { page } from "$app/stores";
   import { goto } from "$app/navigation";
   import { addUser } from "../../firebase/db";
+
+  const bcrypt = dcodeIO.bcrypt
 
   // User param
   const user = $page.params.user;
@@ -21,14 +22,15 @@
   };
 
   // Confirm button action
-  const handleConfirm = () => {
+  const handleConfirm = async () => {
     passErr = false;
     confirmPassErr = false;
 
     if (password.trim().length < 6) return (passErr = true);
     if (password.trim() != confirmPass.trim()) return (confirmPassErr = true);
 
-    addUser({ user, password, note: "" });
+    const hashedPass = await bcrypt.hash(password, 10)
+    addUser({ user, hashedPass, note: "" });
   };
 </script>
 
