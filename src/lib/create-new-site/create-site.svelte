@@ -1,15 +1,19 @@
 <script>
   import { page } from "$app/stores";
   import { goto } from "$app/navigation";
-  import { showAddSiteModal, showAddPassModal } from "../modal.svelte";
+  import { showAddSiteModal, showAddPassModal } from "../note.svelte";
 
+  // Getting url host and param
   const host = $page.url.host;
   const user = $page.params.user;
 
+  // Cancel button action
   const handleCancel = () => {
     goto("/")
   };
 
+
+  // Create button action
   const handleCreate = () => {
     $showAddSiteModal = false;
     $showAddPassModal = true;

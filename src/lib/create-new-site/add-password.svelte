@@ -1,19 +1,26 @@
 <script>
+  const bcrypt = require("bcrypt");
   import { page } from "$app/stores";
   import { goto } from "$app/navigation";
   import { addUser } from "../../firebase/db";
 
+  // User param
   const user = $page.params.user;
 
+  // Error states
   let passErr = false;
   let confirmPassErr = false;
+
+  // Password states
   let password = "";
   let confirmPass = "";
 
+  // Cancel button action
   const handleCancel = () => {
     goto("/");
   };
 
+  // Confirm button action
   const handleConfirm = () => {
     passErr = false;
     confirmPassErr = false;
@@ -21,7 +28,7 @@
     if (password.trim().length < 6) return (passErr = true);
     if (password.trim() != confirmPass.trim()) return (confirmPassErr = true);
 
-    addUser({user, password});
+    addUser({ user, password, note: "" });
   };
 </script>
 

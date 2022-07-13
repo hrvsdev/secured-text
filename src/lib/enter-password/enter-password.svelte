@@ -1,20 +1,21 @@
 <script>
-  import { onMount } from "svelte";
   import { goto } from "$app/navigation";
   import { page } from "$app/stores";
-  import { showModal } from "../modal.svelte";
-  import { getUser } from "../../firebase/db";
-  import { userData } from "../modal.svelte";
+  import { showModal, userData } from "../note.svelte";
 
+  // Password states
   let passErr = false;
   let password = "";
 
+  // User param
   const user = $page.params.user;
 
+  // Cancel button action
   const handleCancel = () => {
     goto("/");
   };
 
+  // Confirm button action
   const handleConfirm = async () => {
     passErr = false;
     if ($userData[0].password != password) return (passErr = true);
