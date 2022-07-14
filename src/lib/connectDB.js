@@ -8,33 +8,30 @@ if (!MONGODB_URI) {
   );
 }
 
-// let cached = global.mongoose;
+let cached = global.mongoose;
 
-// if (!cached) {
-//   cached = global.mongoose = { conn: null, promise: null };
-// }
+if (!cached) {
+  cached = global.mongoose = { conn: null, promise: null };
+}
 
 async function connectDB() {
-  // if (cached.conn) {
-  //   return cached.conn;
-  // }
+  if (cached.conn) {
+    return cached.conn;
+  }
 
-  // if (!cached.promise) {
-  //   const opts = {
-  //     useNewUrlParser: true,
-  //     useUnifiedTopology: true,
-  //     autoIndex: true
-  //   };
+  if (!cached.promise) {
+    const opts = {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      autoIndex: true
+    };
 
-    mongoose.connect(MONGODB_URI).then((mongoose) => {
+    cached.promise = mongoose.connect(MONGODB_URI).then((mongoose) => {
       return mongoose;
     });
-    // cached.promise = mongoose.connect(MONGODB_URI).then((mongoose) => {
-    //   return mongoose;
-    // });
-  // }
-  // cached.conn = await cached.promise;
-  // return cached.conn;
+  }
+  cached.conn = await cached.promise;
+  return cached.conn;
 }
 
 export default connectDB;

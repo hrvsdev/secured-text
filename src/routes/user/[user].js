@@ -1,13 +1,31 @@
 import connectDB from "$lib/connectDB";
 import User from "../../models/user.model";
 
-export async function get({ request, params }) {
+export async function get({ params }) {
   const param = params.user;
   try {
     await connectDB();
     const user = await User.findOne({ user: param });
-    if (user) return { body: { user, success: true } };
-    else return { body: { user, success: false } };
+    if (user) return { body: { success: true } };
+    else return { body: { success: false } };
+  } catch (err) {
+    console.log(err);
+    return {
+      status: 500,
+      body: err,
+    };
+  }
+}
+
+export async function post({ request, params }) {
+  const param = params.user;
+  try {
+    await connectDB();
+    const data = await request.json();
+    const user = await User.findOne({ user: param });
+    if (user && user.password === data.password) {
+      return { body: { user, success: true } };
+    } else return { status: 401, body: { success: false } };
   } catch (err) {
     console.log(err);
     return {
