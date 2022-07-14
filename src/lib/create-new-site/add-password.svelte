@@ -2,6 +2,8 @@
   import axios from "axios";
   import { page } from "$app/stores";
   import { goto } from "$app/navigation";
+  import { user } from "../../routes/[user].svelte";
+  import { note, showModal } from "../note.svelte";
 
   // User param
   const userParam = $page.params.user;
@@ -24,11 +26,12 @@
     const data = {
       user: userParam,
       password,
-      note: "A note",
+      note: "",
     };
 
     try {
-      await axios.post("/user", data);
+      const res = await axios.post("/user", data);
+      return res.data;
     } catch (err) {
       console.log(err.response.data);
     }
@@ -42,7 +45,12 @@
     if (password.trim().length < 6) return (passErr = true);
     if (password.trim() != confirmPass.trim()) return (confirmPassErr = true);
 
-    addUser();
+    const res = await addUser();
+    if (res.success) {
+      $user = res;
+      $note = res.user.note;
+      $showModal = false;
+    }
   };
 </script>
 

@@ -1,6 +1,7 @@
 <script context="module">
   import { writable } from "svelte/store";
 
+  export const note = writable("");
   export const showModal = writable(true);
   export const showAddSiteModal = writable(true);
   export const showAddPassModal = writable(false);
@@ -12,22 +13,19 @@
   import { user } from "../routes/[user].svelte";
   import Modal from "./modal.svelte";
 
-  // Textarea value
-  let value
-
-  value = $user.user?.note
-
   // Textarea value change action
   const handleChange = async () => {
     try {
-      await axios.put(`/user/${$user.user?.user}`, { note: value });
+      await axios.patch(`/user/${$user.user?._id}`, { note: $note });
     } catch (err) {
-      console.log(err);
+      console.log(err.response.data);
     }
   };
 </script>
 
-{#if $user.user?.note}
-  <textarea bind:value on:change={handleChange} />
-{/if}
+<textarea
+  placeholder="Your text goes here ..."
+  bind:value={$note}
+  on:keyup={handleChange}
+/>
 <Modal />

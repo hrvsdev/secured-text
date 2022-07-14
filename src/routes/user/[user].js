@@ -9,7 +9,6 @@ export async function get({ params }) {
     if (user) return { body: { success: true } };
     else return { body: { success: false } };
   } catch (err) {
-    console.log(err);
     return {
       status: 500,
       body: err,
@@ -24,11 +23,19 @@ export async function post({ request, params }) {
     const data = await request.json();
     const user = await User.findOne({ user: param });
     if (user && user.password === data.password) {
-      return { body: { user, success: true } };
+      return {
+        body: {
+          user: {
+            _id: user._id,
+            user: user.user,
+            note: user.note,
+          },
+          success: true,
+        },
+      };
     } else
       return { status: 401, body: { msg: "wrong password", success: false } };
   } catch (err) {
-    console.log(err);
     return {
       status: 500,
       body: err,
@@ -36,16 +43,15 @@ export async function post({ request, params }) {
   }
 }
 
-export async function put({ request, params }) {
-  const param = params.user;
+export async function patch({ request, params }) {
+  const id = params.user;
   try {
     await connectDB();
     const data = await request.json();
-    const user = await User.findOneAndUpdate({ user: param }, data);
-    if (user) return
+    const user = await User.findByIdAndUpdate(id, data);
+    if (user) return { status: 200 };
     else return { body: { success: false } };
   } catch (err) {
-    console.log(err);
     return {
       status: 500,
       body: err,
