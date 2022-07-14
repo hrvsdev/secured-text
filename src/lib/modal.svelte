@@ -1,16 +1,13 @@
 <script>
   import { fade, scale } from "svelte/transition";
-  import { page } from "$app/stores";
 
   import CreateSite from "./create-new-site/create-site.svelte";
   import AddPassword from "./create-new-site/add-password.svelte";
   import EnterPassword from "./enter-password/enter-password.svelte";
 
-  import { userData, showModal } from "./note.svelte";
+  import { user } from "../routes/[user].svelte";
+  import { showModal } from "./note.svelte";
   import { showAddSiteModal, showAddPassModal } from "./note.svelte";
-
-  // Getting user param
-  const user = $page.params.user;
 
   // Modal Animations
   const modalWrapAnim = {
@@ -26,7 +23,7 @@
 {#if $showModal}
   <div transition:fade={modalWrapAnim} class="modal-wrapper">
     <div transition:scale={modalAnim} class="modal">
-      {#if $userData.length}
+      {#if $user.success}
         <EnterPassword />
       {:else if $showAddSiteModal}
         <CreateSite />

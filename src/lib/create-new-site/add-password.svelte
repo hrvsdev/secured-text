@@ -1,12 +1,10 @@
 <script>
+  import axios from "axios";
   import { page } from "$app/stores";
   import { goto } from "$app/navigation";
-  import { addUser } from "../../firebase/db";
-
-  const bcrypt = dcodeIO.bcrypt
 
   // User param
-  const user = $page.params.user;
+  const userParam = $page.params.user;
 
   // Error states
   let passErr = false;
@@ -21,6 +19,21 @@
     goto("/");
   };
 
+  // Adding user
+  const addUser = async () => {
+    const data = {
+      user: userParam,
+      password,
+      note: "A note",
+    };
+
+    try {
+      await axios.post("/user", data);
+    } catch (err) {
+      console.log(err.response.data);
+    }
+  };
+
   // Confirm button action
   const handleConfirm = async () => {
     passErr = false;
@@ -29,8 +42,7 @@
     if (password.trim().length < 6) return (passErr = true);
     if (password.trim() != confirmPass.trim()) return (confirmPassErr = true);
 
-    const hashedPass = await bcrypt.hash(password, 10)
-    addUser({ user, hashedPass, note: "" });
+    addUser();
   };
 </script>
 

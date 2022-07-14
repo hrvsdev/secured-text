@@ -5,7 +5,7 @@
 
   // Getting url host and param
   const host = $page.url.host;
-  const user = $page.params.user;
+  const userParam = $page.params.user;
 
   // Cancel button action
   const handleCancel = () => {
@@ -27,7 +27,7 @@
   <p class="info">Great! This site doesn't exist, you can make it yours.</p>
   <div class="user-info-wrapper">
     <div class="user-info">
-      <span class="host-name">securedtext.com/</span>{user}
+      <span class="host-name">securedtext.com/</span>{userParam}
     </div>
   </div>
   <div class="button-wrapper">

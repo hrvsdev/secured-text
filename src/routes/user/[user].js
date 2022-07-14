@@ -25,7 +25,8 @@ export async function post({ request, params }) {
     const user = await User.findOne({ user: param });
     if (user && user.password === data.password) {
       return { body: { user, success: true } };
-    } else return { status: 401, body: { success: false } };
+    } else
+      return { status: 401, body: { msg: "wrong password", success: false } };
   } catch (err) {
     console.log(err);
     return {
@@ -41,8 +42,8 @@ export async function put({ request, params }) {
     await connectDB();
     const data = await request.json();
     const user = await User.findOneAndUpdate({ user: param }, data);
-    if (user) return { body: { user, success: true } };
-    else return { body: { user, success: false } };
+    if (user) return
+    else return { body: { success: false } };
   } catch (err) {
     console.log(err);
     return {

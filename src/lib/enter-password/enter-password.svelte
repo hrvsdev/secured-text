@@ -1,25 +1,43 @@
 <script>
+  import axios from "axios";
   import { goto } from "$app/navigation";
   import { page } from "$app/stores";
-  import { showModal, userData } from "../note.svelte";
+  import { user } from "../../routes/[user].svelte";
+  import { showModal } from "../note.svelte";
 
   // Password states
   let passErr = false;
   let password = "";
 
   // User param
-  const user = $page.params.user;
+  const userParam = $page.params.user;
 
   // Cancel button action
   const handleCancel = () => {
     goto("/");
   };
 
+  // Getting user
+  const getUser = async () => {
+    try {
+      const res = await axios.post(`/user/${userParam}`, { password });
+      return res.data;
+    } catch (err) {
+      console.log(err);
+      return err.response.data;
+    }
+  };
+
   // Confirm button action
   const handleConfirm = async () => {
     passErr = false;
-    if ($userData[0].password != password) return (passErr = true);
-    return ($showModal = false);
+    const res = await getUser();
+    if (res.success) {
+      $user = res;
+      $showModal = false;
+    } else {
+      passErr = true;
+    }
   };
 </script>
 

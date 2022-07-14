@@ -1,8 +1,6 @@
 <script context="module">
   import { writable } from "svelte/store";
 
-  export const userData = writable([]);
-
   export const showModal = writable(true);
   export const showAddSiteModal = writable(true);
   export const showAddPassModal = writable(false);
@@ -10,47 +8,26 @@
 </script>
 
 <script>
-  import { doc, onSnapshot, updateDoc } from "firebase/firestore";
-  import { onMount } from "svelte";
-  import { page } from "$app/stores";
-  import { db, getUser } from "../firebase/db";
-
-  import Loader from "./loader.svelte";
+  import axios from "axios";
+  import { user } from "../routes/[user].svelte";
   import Modal from "./modal.svelte";
 
-  // User param
-  const user = $page.params.user;
+  // Textarea value
+  let value
 
-  // Textarea value state
-  let value = "";
+  value = $user.user?.note
 
-  // Snapshot user data
-  let data = {};
-
-  // Loading state
-  let loading = true;
-
-  // Textarea change action
+  // Textarea value change action
   const handleChange = async () => {
-    const userDocRef = doc(db, "users", $userData[0].id);
-    await updateDoc(userDocRef, { note: value });
+    try {
+      await axios.put(`/user/${$user.user?.user}`, { note: value });
+    } catch (err) {
+      console.log(err);
+    }
   };
-
-  // Getting data on first load
-  onMount(async () => {
-    $userData = await getUser(user);
-
-    setTimeout(() => {
-      loading = false;
-    }, 100);
-
-    if ($userData.length) value = $userData[0].note;
-  });
 </script>
 
-{#if loading}
-  <Loader />
-{:else}
+{#if $user.user?.note}
   <textarea bind:value on:change={handleChange} />
-  <Modal />
 {/if}
+<Modal />
