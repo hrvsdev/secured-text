@@ -1,7 +1,11 @@
 <script>
   import { page } from "$app/stores";
   import { goto } from "$app/navigation";
-  import { showAddSiteModal, showAddPassModal } from "../note.svelte";
+  import {
+    showModal,
+    showAddSiteModal,
+    showAddPassModal,
+  } from "../note.svelte";
 
   // Getting url host and param
   const host = $page.url.host;
@@ -9,16 +13,14 @@
 
   // Cancel button action
   const handleCancel = () => {
-    goto("/")
+    goto("/");
   };
-
 
   // Create button action
   const handleCreate = () => {
     $showAddSiteModal = false;
     $showAddPassModal = true;
   };
-  
 </script>
 
 <div class="add-site-modal">

@@ -1,9 +1,9 @@
 <script>
   import { fade, scale } from "svelte/transition";
 
-  import CreateSite from "./create-new-site/create-site.svelte";
-  import AddPassword from "./create-new-site/add-password.svelte";
-  import EnterPassword from "./enter-password/enter-password.svelte";
+  import CreateSite from "./note/create-site.svelte";
+  import AddPassword from "./note/add-password.svelte";
+  import EnterPassword from "./note/enter-password.svelte";
 
   import { user } from "../routes/[user].svelte";
   import { showModal } from "./note.svelte";
@@ -21,8 +21,8 @@
 </script>
 
 {#if $showModal}
-  <div transition:fade={modalWrapAnim} class="modal-wrapper">
-    <div transition:scale={modalAnim} class="modal">
+  <div transition:fade|local={modalWrapAnim} class="modal-wrapper">
+    <div transition:scale|local={modalAnim} class="modal">
       {#if $user.success}
         <EnterPassword />
       {:else if $showAddSiteModal}

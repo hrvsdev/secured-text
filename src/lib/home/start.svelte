@@ -8,7 +8,7 @@
   };
 </script>
 
-<div class="start-wrapper">
+<div id="start" class="start-wrapper">
   <h1>Get Started</h1>
   <p>
     Enter some words to start. It will automatically make your words url

@@ -22,6 +22,7 @@
 
   // User store will always in synced with server-side data
   $: $user = data;
+
 </script>
 
 <Note />

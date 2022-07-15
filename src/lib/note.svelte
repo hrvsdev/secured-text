@@ -29,3 +29,10 @@
   on:keyup={handleChange}
 />
 <Modal />
+
+
+<style>
+  textarea{
+    height: 120vh;
+  }
+</style>
