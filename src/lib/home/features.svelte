@@ -1,5 +1,6 @@
 <script>
-  import UserOffIcon from "../assets/user-off.svelte";
+  import FeatureCard from "./feature-card.svelte";
+  import ShieldIcon from "../assets/shield.svelte";
 </script>
 
 <div class="features-wrapper">
@@ -8,21 +9,50 @@
     <p>Beacuse Secured Text has features that no one is willing to offer!</p>
   </div>
   <div class="cards-wrapper">
-    <div class="card">
-      <div class="icon-wrapper">
-        <UserOffIcon />
-      </div>
-      <h3>No User Info</h3>
-      <p>
-        We don't ask or store any personal information of users. All it needs a
+    <FeatureCard>
+      <svelte:fragment slot="icon"><ShieldIcon /></svelte:fragment>
+      <svelte:fragment slot="heading">No User Info</svelte:fragment>
+      <svelte:fragment slot="para">
+        We never ask or store any personal information of users. All it needs a
         word and a password for security.
-      </p>
-    </div>
-    <div class="card">Two</div>
-    <div class="card">Three</div>
-    <div class="card">Four</div>
-    <div class="card">Five</div>
-    <div class="card">Six</div>
+      </svelte:fragment>
+    </FeatureCard>
+    <FeatureCard>
+      <svelte:fragment slot="icon"><ShieldIcon /></svelte:fragment>
+      <svelte:fragment slot="heading">No Login</svelte:fragment>
+      <svelte:fragment slot="para">
+        We never ask you to log in by your name, email, phone or by any other
+        provider. Only a word is required.
+      </svelte:fragment>
+    </FeatureCard>
+    <FeatureCard>
+      <svelte:fragment slot="icon"><ShieldIcon /></svelte:fragment>
+      <svelte:fragment slot="heading">No Ads</svelte:fragment>
+      <svelte:fragment slot="para">
+        We hate ads and you too. Ads requires a lot of user data and it is against our policy. There are no ads and never will be.
+      </svelte:fragment>
+    </FeatureCard>
+    <FeatureCard>
+      <svelte:fragment slot="icon"><ShieldIcon /></svelte:fragment>
+      <svelte:fragment slot="heading">Encrypted Text</svelte:fragment>
+      <svelte:fragment slot="para">
+        The text is highly encrypted and can only be decrypted by the real password which is stored only in your brain and not in our data.
+      </svelte:fragment>
+    </FeatureCard>
+    <FeatureCard>
+      <svelte:fragment slot="icon"><ShieldIcon /></svelte:fragment>
+      <svelte:fragment slot="heading">Free Forever</svelte:fragment>
+      <svelte:fragment slot="para">
+        It is a open-source project and will be 100% free to all of our users for forever of our lives. We will never ask you a single penny.
+      </svelte:fragment>
+    </FeatureCard>
+    <FeatureCard>
+      <svelte:fragment slot="icon"><ShieldIcon /></svelte:fragment>
+      <svelte:fragment slot="heading">Lightning Fast</svelte:fragment>
+      <svelte:fragment slot="para">
+        The whole app is well optimized and is very fast. You will never face delay or any latency while working.
+      </svelte:fragment>
+    </FeatureCard>
   </div>
 </div>
 
@@ -52,15 +82,4 @@
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     margin-bottom: 50px;
   }
-
-  .card {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: rgba(104, 112, 118, 0.07) 0px 2px 8px 2px,
-      rgba(104, 112, 118, 0.04) 0px 2px 4px -1px;
-  }
-  
 </style>
