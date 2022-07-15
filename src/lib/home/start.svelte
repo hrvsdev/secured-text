@@ -74,21 +74,26 @@
   }
 
   @media (max-width: 700px) {
-    main {
-      margin-top: 40px;
-      margin-bottom: 50px;
-    }
-
     h1 {
       font-size: 25px;
     }
 
     p {
-      font-size: 15px;
+      font-size: 16px;
     }
   }
 
   @media (max-width: 500px) {
+    h1 {
+      width: 100%;
+      text-align: left;
+    }
+
+    p {
+      width: 100%;
+      text-align: left;
+    }
+
     form {
       flex-direction: column;
       width: 100%;

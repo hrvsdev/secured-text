@@ -58,22 +58,31 @@
     text-align: center;
   }
 
-
-  @media (max-width: 700px){
-
-    main{
+  @media (max-width: 700px) {
+    main {
       margin-top: 40px;
       margin-bottom: 50px;
     }
 
-    h1{
+    h1 {
       font-size: 35px;
       margin-bottom: 25px;
     }
 
-    p{
-      font-size: 17px;
+    p {
+      font-size: 16px;
     }
   }
 
+  @media (max-width: 500px) {
+      h1 {
+        width: 100%;
+        text-align: left;
+      }
+
+      p {
+        width: 100%;
+        text-align: left;
+      }
+  }
 </style>
