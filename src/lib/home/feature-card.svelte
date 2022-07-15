@@ -13,6 +13,9 @@
 <style lang="scss">
   .card {
     padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     border-radius: 10px;
     box-shadow: rgba(104, 112, 118, 0.07) 0px 2px 8px 2px,
       rgba(104, 112, 118, 0.04) 0px 2px 4px -1px;

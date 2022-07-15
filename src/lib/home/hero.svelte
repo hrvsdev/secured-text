@@ -1,7 +1,7 @@
 <main>
   <div class="hero-heading-wrapper">
     <h1>
-      The <span class="highlighted-word">safest</span> place on Internet to write
+      The <span class="highlighted-word">safest</span> place on Internet to store
       text
     </h1>
   </div>
@@ -18,7 +18,8 @@
   main {
     width: 100%;
     margin-top: 100px;
-    margin-bottom: 100px;
+    margin-bottom: 80px;
+    padding: 0 35px;
   }
 
   .hero-heading-wrapper {
@@ -56,4 +57,23 @@
     max-width: 985px;
     text-align: center;
   }
+
+
+  @media (max-width: 700px){
+
+    main{
+      margin-top: 40px;
+      margin-bottom: 50px;
+    }
+
+    h1{
+      font-size: 35px;
+      margin-bottom: 25px;
+    }
+
+    p{
+      font-size: 17px;
+    }
+  }
+
 </style>

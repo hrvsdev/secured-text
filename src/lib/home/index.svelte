@@ -1,9 +1,11 @@
 <script>
-    import Navbar from "./navbar.svelte"
-    import Hero from "./hero.svelte"
-    import Features from "./features.svelte"
+  import Navbar from "./navbar.svelte";
+  import Hero from "./hero.svelte";
+  import Start from "./start.svelte";
+  import Features from "./features.svelte";
 </script>
 
-<Navbar/>
-<Hero/>
-<Features/>
+<Navbar />
+<Hero />
+<Start />
+<Features />

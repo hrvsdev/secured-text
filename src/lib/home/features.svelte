@@ -57,6 +57,11 @@
 </div>
 
 <style lang="scss">
+
+  .features-wrapper{
+    padding: 0 35px;
+  }
+
   .features-text {
     display: flex;
     justify-content: center;

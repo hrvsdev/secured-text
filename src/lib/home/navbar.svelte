@@ -21,6 +21,7 @@
     justify-content: center;
     align-items: center;
     height: 76px;
+    padding: 0 35px;
     box-shadow: rgb(2 1 1 / 10%) 0px 0px 20px -5px;
   }
 
