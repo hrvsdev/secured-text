@@ -12,7 +12,7 @@ export async function post({ request }) {
         user: {
           _id: user._id,
           user: user.user,
-          note: user.note,
+          notes: user.notes,
         },
         success: true,
       },

@@ -28,7 +28,7 @@ export async function post({ request, params }) {
           user: {
             _id: user._id,
             user: user.user,
-            note: user.note,
+            notes: user.notes,
           },
           success: true,
         },

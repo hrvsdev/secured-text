@@ -3,7 +3,7 @@
   import { goto } from "$app/navigation";
   import { page } from "$app/stores";
   import { user } from "../../../routes/[user].svelte";
-  import { note, showModal } from "../index.svelte";
+  import { notes, showModal } from "../index.svelte";
 
   // Password states
   let passErr = false;
@@ -34,7 +34,7 @@
     const res = await getUser();
     if (res.success) {
       $user = res;
-      $note = res.user.note;
+      $notes = res.user.notes
       $showModal = false;
     } else {
       passErr = true;
