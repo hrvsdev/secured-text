@@ -19,14 +19,21 @@
     <h2>Secured Text</h2>
     <div class="icon" on:click={onAddClick}><PlusIcon /></div>
   </header>
-  <div class="notes-grid-wrapper">
-    {#each $notes as note}
-      <div class="note-wrapper" on:click={() => onNoteClick(note)}>
-        <h3>Note Title</h3>
-        <p>{note.note}</p>
-      </div>
-    {/each}
-  </div>
+  {#if $notes.length}
+    <div class="notes-grid-wrapper">
+      {#each $notes as note}
+        <div class="note-wrapper" on:click={() => onNoteClick(note)}>
+          <h3>Note Title</h3>
+          <p>{note.note}</p>
+        </div>
+      {/each}
+    </div>
+  {:else}
+    <div class="no-notes-msg">
+      <h3>Why so empty?</h3>
+      <p>Add a note by writing on right side or by clicking the plus + icon.</p>
+    </div>
+  {/if}
 </aside>
 
 <style lang="scss">
@@ -60,6 +67,28 @@
     }
   }
 
+  .no-notes-msg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    padding: 20px;
+    text-align: center;
+
+    h3{
+      margin-bottom: 6px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    p{
+      font-size: 16px;
+      color: rgb(104, 112, 118);
+      line-height: 22px;
+    }
+  }
+
   .notes-grid-wrapper {
     display: flex;
     justify-content: center;
@@ -75,20 +104,21 @@
     padding: 12px 15px;
     width: 100%;
     cursor: pointer;
+
+    h3 {
+      font-weight: 600;
+      margin-bottom: 3px;
+      font-size: 16px;
+    }
+  
+    p {
+      color: rgb(104, 112, 118);
+      font-size: 15px;
+      max-height: 38px;
+      overflow: hidden;
+    }
   }
 
-  h3 {
-    font-weight: 600;
-    margin-bottom: 3px;
-    font-size: 16px;
-  }
-
-  p {
-    color: rgb(104, 112, 118);
-    font-size: 15px;
-    max-height: 38px;
-    overflow: hidden;
-  }
 
   @media (max-width: 900px) {
     aside {
