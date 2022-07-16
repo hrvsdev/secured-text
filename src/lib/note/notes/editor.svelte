@@ -1,5 +1,4 @@
 <script>
-  import PlusIcon from "../../assets/plus.svelte";
   import BackIcon from "../../assets/back.svelte";
 
   import { isNoteOpen } from "./note.svelte";
@@ -13,13 +12,8 @@
   <header>
     <div class="left-wrapper">
       <div class="back-button" on:click={onBackClick}><BackIcon /></div>
-      <PlusIcon />
-      <PlusIcon />
     </div>
     <div class="right-wrapper">
-      <PlusIcon />
-      <PlusIcon />
-      <PlusIcon />
     </div>
   </header>
   <div class="textarea-wrapper">
@@ -74,7 +68,6 @@
     display: none;
     justify-content: center;
     align-items: center;
-    color: red;
   }
 
   @media (max-width: 1000px) {
