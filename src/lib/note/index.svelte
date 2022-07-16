@@ -17,6 +17,8 @@
 <script>
   import Modal from "./modal/modal.svelte";
   import Note from "./notes/note.svelte";
+
+  $: console.log($currentNote)
 </script>
 
 <Note />

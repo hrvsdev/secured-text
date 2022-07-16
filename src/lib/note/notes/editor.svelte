@@ -1,4 +1,6 @@
 <script>
+  import axios from "axios"
+
   import BackIcon from "../../assets/back.svelte";
   import DeleteIcon from "../../assets/delete.svelte";
   import SaveIcon from "../../assets/check.svelte";
@@ -19,11 +21,11 @@
     };
 
     try {
-      const res = await axios.post(`/u/${$user.user._id}`, data);
-      $notes = res.data;
+      const res = await axios.patch(`/u/${$user.user._id}`, data);
       return res.data;
     } catch (err) {
-      console.log(err.response.data);
+      console.log("failure");
+      console.log(err);
     }
   };
 
@@ -36,16 +38,16 @@
       $currentNote = $notes[$currentNote.id];
     } else {
       $notes = [...$notes, { id: $notes.length, note: textarea.value }];
-      $currentNote = $notes[$notes.length];
+      $currentNote = $notes[$notes.length - 1];
     }
     await handleSave();
     $isNoteOpen = false;
   };
 
-  const onDeleteClick = async () => {
+  const onDeleteClick = () => {
     $notes = $notes.filter((e, i) => i !== $notes.indexOf($currentNote));
     $currentNote = { id: "", note: "" };
-    await handleSave();
+    handleSave();
     $isNoteOpen = false;
   };
 </script>
