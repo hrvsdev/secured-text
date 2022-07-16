@@ -2,33 +2,50 @@
   import BackIcon from "../../assets/back.svelte";
   import DeleteIcon from "../../assets/delete.svelte";
   import SaveIcon from "../../assets/check.svelte";
+
+  import { user } from "../../../routes/[user].svelte";
   import { currentNote, notes } from "../index.svelte";
   import { isNoteOpen } from "./note.svelte";
 
-  // let value = $currentNote.note
   let textarea;
 
   const onBackClick = () => {
     $isNoteOpen = false;
   };
 
-  const onSaveClick = () => {
+  const handleSave = async () => {
+    const data = {
+      notes: $notes,
+    };
+
+    try {
+      const res = await axios.post(`/u/${$user.user._id}`, data);
+      $notes = res.data;
+      return res.data;
+    } catch (err) {
+      console.log(err.response.data);
+    }
+  };
+
+  const onSaveClick = async () => {
     if ($currentNote.id) {
       $notes[$notes.indexOf($currentNote)] = {
         ...$currentNote,
         note: textarea.value,
       };
-      $currentNote = $notes[$currentNote.id - 1];
+      $currentNote = $notes[$currentNote.id];
     } else {
-      $notes = [...$notes, { id: $notes.length + 1, note: textarea.value }];
-      $currentNote = $notes[$notes.length - 1];
+      $notes = [...$notes, { id: $notes.length, note: textarea.value }];
+      $currentNote = $notes[$notes.length];
     }
+    await handleSave();
     $isNoteOpen = false;
   };
 
-  const onDeleteClick = () => {
+  const onDeleteClick = async () => {
     $notes = $notes.filter((e, i) => i !== $notes.indexOf($currentNote));
     $currentNote = { id: "", note: "" };
+    await handleSave();
     $isNoteOpen = false;
   };
 </script>

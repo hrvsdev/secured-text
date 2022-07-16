@@ -49,7 +49,7 @@ export async function patch({ request, params }) {
     await connectDB();
     const data = await request.json();
     const user = await User.findByIdAndUpdate(id, data);
-    if (user) return { status: 200 };
+    if (user) return { body: { notes: user.notes }, status: 200 };
     else return { body: { success: false } };
   } catch (err) {
     return {

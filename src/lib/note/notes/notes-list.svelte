@@ -9,8 +9,8 @@
   };
 
   const onAddClick = () => {
-    $isNoteOpen = true;
     $currentNote = { id: "", note: "" };
+    $isNoteOpen = true;
   };
 </script>
 

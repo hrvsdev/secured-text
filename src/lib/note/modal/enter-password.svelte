@@ -34,7 +34,7 @@
     const res = await getUser();
     if (res.success) {
       $user = res;
-      // $notes = res.user.notes
+      $notes = res.user.notes
       $showModal = false;
     } else {
       passErr = true;
