@@ -1,7 +1,10 @@
 <script>
   import BackIcon from "../../assets/back.svelte";
-
+  import DeleteIcon from "../../assets/delete.svelte";
+  import SaveIcon from "../../assets/check.svelte";
   import { isNoteOpen } from "./note.svelte";
+
+  let value = "";
 
   const onBackClick = () => {
     $isNoteOpen = false;
@@ -14,10 +17,16 @@
       <div class="back-button" on:click={onBackClick}><BackIcon /></div>
     </div>
     <div class="right-wrapper">
+      <div class="icon"><SaveIcon /></div>
+      <div class="icon"><DeleteIcon /></div>
     </div>
   </header>
   <div class="textarea-wrapper">
-    <textarea spellcheck="false" placeholder="Your text goes here ..." />
+    <textarea
+      bind:value
+      spellcheck="false"
+      placeholder="Your text goes here ..."
+    />
   </div>
 </div>
 
@@ -40,7 +49,14 @@
     .left-wrapper,
     .right-wrapper {
       display: flex;
-      column-gap: 15px;
+      column-gap: 20px;
+      .icon {
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: rgb(100, 105, 112);
+      }
     }
   }
 
@@ -65,9 +81,11 @@
   }
 
   .back-button {
-    display: none;
+    cursor: pointer;
     justify-content: center;
     align-items: center;
+    color: rgb(100, 105, 112);
+    display: none;
   }
 
   @media (max-width: 1000px) {

@@ -30,7 +30,7 @@
     };
 
     try {
-      const res = await axios.post("/user", data);
+      const res = await axios.post("/u", data);
       return res.data;
     } catch (err) {
       console.log(err.response.data);

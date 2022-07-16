@@ -3,14 +3,14 @@
   import { isNoteOpen } from "./note.svelte";
 
   const onNoteClick = () => {
-    $isNoteOpen = true
+    $isNoteOpen = true;
   };
 </script>
 
 <aside>
   <header>
     <h2>Secured Text</h2>
-    <PlusIcon/>
+    <div class="icon"><PlusIcon /></div>
   </header>
   <div class="notes-grid-wrapper">
     <div class="note-wrapper" on:click={onNoteClick}>
@@ -43,6 +43,14 @@
     h2 {
       font-size: 20px;
       font-weight: 600;
+    }
+
+    .icon {
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: rgb(100, 105, 112);
     }
   }
 

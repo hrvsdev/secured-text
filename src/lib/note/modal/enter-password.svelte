@@ -20,7 +20,7 @@
   // Getting user
   const getUser = async () => {
     try {
-      const res = await axios.post(`/user/${userParam}`, { password });
+      const res = await axios.post(`/u/${userParam}`, { password });
       return res.data;
     } catch (err) {
       console.log(err);

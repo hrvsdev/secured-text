@@ -6,7 +6,7 @@
 
   // Running server-side function
   export async function load({ fetch, params }) {
-    const res = await fetch(`/user/${params.user}`);
+    const res = await fetch(`/u/${params.user}`);
     const data = await res.json();
     return {
       props: { data },
