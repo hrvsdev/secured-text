@@ -10,7 +10,9 @@
 
 <script>
   import axios from "axios";
-  import { user } from "../routes/[user].svelte";
+  import { user } from "../../routes/[user].svelte";
+
+  import Navbar from "./navbar.svelte";
   import Modal from "./modal.svelte";
 
   // Textarea value change action
@@ -23,16 +25,5 @@
   };
 </script>
 
-<textarea
-  placeholder="Your text goes here ..."
-  bind:value={$note}
-  on:keyup={handleChange}
-/>
-<Modal />
-
-
-<style>
-  textarea{
-    height: 120vh;
-  }
-</style>
+<Navbar />
+<!-- <Modal /> -->

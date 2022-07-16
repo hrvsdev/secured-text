@@ -1,13 +1,13 @@
 <script>
   import { fade, scale } from "svelte/transition";
 
-  import CreateSite from "./note/create-site.svelte";
-  import AddPassword from "./note/add-password.svelte";
-  import EnterPassword from "./note/enter-password.svelte";
+  import CreateSite from "./create-site.svelte";
+  import AddPassword from "./add-password.svelte";
+  import EnterPassword from "./enter-password.svelte";
 
-  import { user } from "../routes/[user].svelte";
-  import { showModal } from "./note.svelte";
-  import { showAddSiteModal, showAddPassModal } from "./note.svelte";
+  import { user } from "../../routes/[user].svelte";
+  import { showModal } from "./index.svelte";
+  import { showAddSiteModal, showAddPassModal } from "./index.svelte";
 
   // Modal Animations
   const modalWrapAnim = {

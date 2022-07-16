@@ -15,7 +15,7 @@
 </script>
 
 <script>
-  import Note from "$lib/note.svelte";
+  import Note from "$lib/note/index.svelte";
 
   // Data that will return from server-side
   export let data = {};

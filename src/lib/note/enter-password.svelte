@@ -3,7 +3,7 @@
   import { goto } from "$app/navigation";
   import { page } from "$app/stores";
   import { user } from "../../routes/[user].svelte";
-  import { note, showModal } from "../note.svelte";
+  import { note, showModal } from "./index.svelte";
 
   // Password states
   let passErr = false;

@@ -3,7 +3,7 @@
   import { page } from "$app/stores";
   import { goto } from "$app/navigation";
   import { user } from "../../routes/[user].svelte";
-  import { note, showModal } from "../note.svelte";
+  import { note, showModal } from "./index.svelte";
 
   // User param
   const userParam = $page.params.user;
