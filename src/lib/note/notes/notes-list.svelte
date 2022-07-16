@@ -1,5 +1,10 @@
 <script>
   import PlusIcon from "../../assets/plus.svelte";
+  import { isNoteOpen } from "./note.svelte";
+
+  const onNoteClick = ()=>{
+    $isNoteOpen = true
+  }
 </script>
 
 <aside>
