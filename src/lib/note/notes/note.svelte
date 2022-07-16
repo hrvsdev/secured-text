@@ -1,12 +1,16 @@
-<script>
-  import { writable } from "svelte.store";
-  import NotesList from "./notes-list.svelte";
-  import Editor from "./editor.svelte";
-
+<script context="module">
+  import { writable } from "svelte/store";
   export const isNoteOpen = writable(false);
 </script>
 
-<main class="notes-wrapper">
+<script>
+  import NotesList from "./notes-list.svelte";
+  import Editor from "./editor.svelte";
+</script>
+
+<main
+  class={`notes-wrapper ${$isNoteOpen ? "note-opened" : "note-not-opened"}`}
+>
   <NotesList />
   <Editor />
 </main>

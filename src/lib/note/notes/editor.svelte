@@ -1,10 +1,18 @@
 <script>
   import PlusIcon from "../../assets/plus.svelte";
+  import BackIcon from "../../assets/back.svelte";
+
+  import { isNoteOpen } from "./note.svelte";
+
+  const onBackClick = () => {
+    $isNoteOpen = false;
+  };
 </script>
 
 <div class="editor-wrapper">
   <header>
     <div class="left-wrapper">
+      <div class="back-button" on:click={onBackClick}><BackIcon /></div>
       <PlusIcon />
       <PlusIcon />
     </div>
@@ -62,6 +70,13 @@
     }
   }
 
+  .back-button {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    color: red;
+  }
+
   @media (max-width: 1000px) {
     .textarea-wrapper {
       textarea {
@@ -75,6 +90,12 @@
       textarea {
         padding: 20px 30px;
       }
+    }
+  }
+
+  @media (max-width: 700px) {
+    .back-button {
+      display: flex;
     }
   }
 </style>

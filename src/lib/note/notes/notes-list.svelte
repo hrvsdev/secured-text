@@ -2,32 +2,18 @@
   import PlusIcon from "../../assets/plus.svelte";
   import { isNoteOpen } from "./note.svelte";
 
-  const onNoteClick = ()=>{
+  const onNoteClick = () => {
     $isNoteOpen = true
-  }
+  };
 </script>
 
 <aside>
   <header>
     <h2>Secured Text</h2>
-    <PlusIcon class="icon" />
+    <PlusIcon/>
   </header>
   <div class="notes-grid-wrapper">
-    <div class="note-wrapper">
-      <h3>Note Title</h3>
-      <p>
-        Note-taking is a important skill for every student. Every person should
-        have a habit of notes.
-      </p>
-    </div>
-    <div class="note-wrapper">
-      <h3>Note Title</h3>
-      <p>
-        Note-taking is a important skill for every student. Every person should
-        have a habit of notes.
-      </p>
-    </div>
-    <div class="note-wrapper">
+    <div class="note-wrapper" on:click={onNoteClick}>
       <h3>Note Title</h3>
       <p>
         Note-taking is a important skill for every student. Every person should
