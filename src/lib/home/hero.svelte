@@ -1,4 +1,4 @@
-<main>
+<div class="hero-wrapper">
   <div class="hero-heading-wrapper">
     <h1>
       The <span class="highlighted-word">safest</span> place on Internet to store
@@ -12,10 +12,10 @@
       for all your notes, ideas, to-do lists, scripts, etc.
     </p>
   </div>
-</main>
+</div>
 
 <style>
-  main {
+  .hero-wrapper {
     width: 100%;
     margin-top: 100px;
     margin-bottom: 80px;

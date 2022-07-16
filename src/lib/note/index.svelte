@@ -12,8 +12,8 @@
   import axios from "axios";
   import { user } from "../../routes/[user].svelte";
 
-  import Navbar from "./navbar.svelte";
-  import Modal from "./modal.svelte";
+  import Modal from "./modal/modal.svelte";
+  import Note from "./notes/note.svelte";
 
   // Textarea value change action
   const handleChange = async () => {
@@ -25,5 +25,5 @@
   };
 </script>
 
-<Navbar />
+<Note/>
 <!-- <Modal /> -->

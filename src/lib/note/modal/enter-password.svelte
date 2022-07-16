@@ -1,80 +1,58 @@
 <script>
   import axios from "axios";
-  import { page } from "$app/stores";
   import { goto } from "$app/navigation";
-  import { user } from "../../routes/[user].svelte";
-  import { note, showModal } from "./index.svelte";
+  import { page } from "$app/stores";
+  import { user } from "../../../routes/[user].svelte";
+  import { note, showModal } from "../index.svelte";
+
+  // Password states
+  let passErr = false;
+  let password = "";
 
   // User param
   const userParam = $page.params.user;
-
-  // Error states
-  let passErr = false;
-  let confirmPassErr = false;
-
-  // Password states
-  let password = "";
-  let confirmPass = "";
 
   // Cancel button action
   const handleCancel = () => {
     goto("/");
   };
 
-  // Adding user
-  const addUser = async () => {
-    const data = {
-      user: userParam,
-      password,
-      note: "",
-    };
-
+  // Getting user
+  const getUser = async () => {
     try {
-      const res = await axios.post("/user", data);
+      const res = await axios.post(`/user/${userParam}`, { password });
       return res.data;
     } catch (err) {
-      console.log(err.response.data);
+      console.log(err);
+      return err.response.data;
     }
   };
 
   // Confirm button action
   const handleConfirm = async () => {
     passErr = false;
-    confirmPassErr = false;
-
-    if (password.trim().length < 6) return (passErr = true);
-    if (password.trim() != confirmPass.trim()) return (confirmPassErr = true);
-
-    const res = await addUser();
+    const res = await getUser();
     if (res.success) {
       $user = res;
       $note = res.user.note;
       $showModal = false;
+    } else {
+      passErr = true;
     }
   };
 </script>
 
 <div class="add-site-modal">
-  <h3 class="title">Create a strong password</h3>
+  <h3 class="title">Enter password</h3>
   <div class="seperator" />
   <p class="info">
-    Make sure to remember the password as there is no way to recover it.
+    This site is already occupied. If this belongs to you, enter the password,
+    or you can try using different site. <br />
   </p>
   <div class="input-wrapper">
     <label class:passErr for="pass">Password</label>
     <input id="pass" type="password" class:passErr bind:value={password} />
-    <p class="pass-error" class:passErr>Atleast 6 characters</p>
-
-    <label class:confirmPassErr for="conf-pass">Confirm password </label>
-    <input
-      class:confirmPassErr
-      type="password"
-      id="conf-pass"
-      bind:value={confirmPass}
-    />
-    <p class="confirm-pass-error" class:confirmPassErr>
-      Password aren't matching
-    </p>
+    <p class="pass-error" class:passErr>Wrong password</p>
   </div>
   <div class="button-wrapper">
     <button on:click={handleCancel} class="secondary">Cancel</button>
@@ -141,8 +119,7 @@
     box-shadow: inset rgb(0, 114, 245) 0 0 0 1px, inset #fff 0 0 0 100px;
   }
 
-  .pass-error,
-  .confirm-pass-error {
+  .pass-error {
     font-size: 12px;
     padding-left: 4px;
     color: #f33;
@@ -151,15 +128,12 @@
   }
 
   label.passErr,
-  label.confirmPassErr,
-  p.passErr,
-  p.confirmPassErr {
+  p.passErr {
     visibility: visible;
     color: #f33;
   }
 
-  input.passErr,
-  input.confirmPassErr {
+  input.passErr {
     box-shadow: inset #f33 0 0 0 1px, inset #fff 0 0 0 100px;
   }
 

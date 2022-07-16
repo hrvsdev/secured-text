@@ -43,7 +43,7 @@
     align-items: center;
   }
 
-  :global(.icon) {
+  .icon {
     width: 26px;
     height: 26px;
     opacity: 0.8;
@@ -51,11 +51,11 @@
     will-change: opacity, transform;
   }
 
-  :global(.icon):hover {
+  .icon:hover {
     opacity: 1;
   }
-
-  :global(.icon):active {
+  
+  .icon:active {
     transform: scale(1.05);
   }
 </style>

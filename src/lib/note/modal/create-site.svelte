@@ -5,7 +5,7 @@
     showModal,
     showAddSiteModal,
     showAddPassModal,
-  } from "./index.svelte";
+  } from "../index.svelte";
 
   // Getting url host and param
   const host = $page.url.host;

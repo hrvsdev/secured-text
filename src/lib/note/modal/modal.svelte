@@ -5,9 +5,9 @@
   import AddPassword from "./add-password.svelte";
   import EnterPassword from "./enter-password.svelte";
 
-  import { user } from "../../routes/[user].svelte";
-  import { showModal } from "./index.svelte";
-  import { showAddSiteModal, showAddPassModal } from "./index.svelte";
+  import { user } from "../../../routes/[user].svelte";
+  import { showModal } from "../index.svelte";
+  import { showAddSiteModal, showAddPassModal } from "../index.svelte";
 
   // Modal Animations
   const modalWrapAnim = {

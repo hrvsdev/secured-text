@@ -5,7 +5,9 @@
   import Features from "./features.svelte";
 </script>
 
-<Navbar />
-<Hero />
-<Start />
-<Features />
+<main>
+  <Navbar />
+  <Hero />
+  <Start />
+  <Features />
+</main>
