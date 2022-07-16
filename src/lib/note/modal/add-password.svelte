@@ -48,7 +48,7 @@
     const res = await addUser();
     if (res.success) {
       $user = res;
-      $notes = res.user.notes
+      // $notes = res.user.notes
       $showModal = false;
     }
   };

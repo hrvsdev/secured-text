@@ -2,11 +2,33 @@
   import BackIcon from "../../assets/back.svelte";
   import DeleteIcon from "../../assets/delete.svelte";
   import SaveIcon from "../../assets/check.svelte";
+  import { currentNote, notes } from "../index.svelte";
   import { isNoteOpen } from "./note.svelte";
 
-  let value = "";
+  // let value = $currentNote.note
+  let textarea;
 
   const onBackClick = () => {
+    $isNoteOpen = false;
+  };
+
+  const onSaveClick = () => {
+    if ($currentNote.id) {
+      $notes[$notes.indexOf($currentNote)] = {
+        ...$currentNote,
+        note: textarea.value,
+      };
+      $currentNote = $notes[$currentNote.id - 1];
+    } else {
+      $notes = [...$notes, { id: $notes.length + 1, note: textarea.value }];
+      $currentNote = $notes[$notes.length - 1];
+    }
+    $isNoteOpen = false;
+  };
+
+  const onDeleteClick = () => {
+    $notes = $notes.filter((e, i) => i !== $notes.indexOf($currentNote));
+    $currentNote = { id: "", note: "" };
     $isNoteOpen = false;
   };
 </script>
@@ -17,14 +39,15 @@
       <div class="back-button" on:click={onBackClick}><BackIcon /></div>
     </div>
     <div class="right-wrapper">
-      <div class="icon"><SaveIcon /></div>
-      <div class="icon"><DeleteIcon /></div>
+      <div class="icon" on:click={onSaveClick}><SaveIcon /></div>
+      <div class="icon" on:click={onDeleteClick}><DeleteIcon /></div>
     </div>
   </header>
   <div class="textarea-wrapper">
     <textarea
-      bind:value
+      value={$currentNote.note}
       spellcheck="false"
+      bind:this={textarea}
       placeholder="Your text goes here ..."
     />
   </div>

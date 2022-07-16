@@ -1,25 +1,31 @@
 <script>
   import PlusIcon from "../../assets/plus.svelte";
   import { isNoteOpen } from "./note.svelte";
+  import { notes, currentNote } from "../index.svelte";
 
-  const onNoteClick = () => {
+  const onNoteClick = (note) => {
     $isNoteOpen = true;
+    $currentNote = note;
+  };
+
+  const onAddClick = () => {
+    $isNoteOpen = true;
+    $currentNote = { id: "", note: "" };
   };
 </script>
 
 <aside>
   <header>
     <h2>Secured Text</h2>
-    <div class="icon"><PlusIcon /></div>
+    <div class="icon" on:click={onAddClick}><PlusIcon /></div>
   </header>
   <div class="notes-grid-wrapper">
-    <div class="note-wrapper" on:click={onNoteClick}>
-      <h3>Note Title</h3>
-      <p>
-        Note-taking is a important skill for every student. Every person should
-        have a habit of notes.
-      </p>
-    </div>
+    {#each $notes as note}
+      <div class="note-wrapper" on:click={() => onNoteClick(note)}>
+        <h3>Note Title</h3>
+        <p>{note.note}</p>
+      </div>
+    {/each}
   </div>
 </aside>
 
@@ -67,6 +73,7 @@
     background-color: #f6f6f6;
     border-radius: 10px;
     padding: 12px 15px;
+    width: 100%;
     cursor: pointer;
   }
 
@@ -79,7 +86,7 @@
   p {
     color: rgb(104, 112, 118);
     font-size: 15px;
-    height: 38px;
+    max-height: 38px;
     overflow: hidden;
   }
 
