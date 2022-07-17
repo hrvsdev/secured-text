@@ -28,7 +28,7 @@
     }
   };
 
-  const onSaveClick = async () => {
+  const onSaveClick = () => {
     if ($currentNote.id) {
       $notes[$notes.indexOf($currentNote)] = {
         ...$currentNote,
@@ -42,7 +42,7 @@
       ];
       $currentNote = $notes[$notes.length - 1];
     }
-    await handleSave();
+    handleSave();
     $isNoteOpen = false;
   };
 

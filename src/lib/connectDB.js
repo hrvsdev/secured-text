@@ -20,12 +20,6 @@ async function connectDB() {
   }
 
   if (!cached.promise) {
-    const opts = {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      autoIndex: true
-    };
-
     cached.promise = mongoose.connect(MONGODB_URI).then((mongoose) => {
       return mongoose;
     });
