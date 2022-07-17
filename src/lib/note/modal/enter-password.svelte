@@ -34,7 +34,7 @@
     const res = await getUser();
     if (res.success) {
       $user = res;
-      $notes = res.user.notes
+      $notes = res.user.notes;
       $showModal = false;
     } else {
       passErr = true;
@@ -49,15 +49,19 @@
     This site is already occupied. If this belongs to you, enter the password,
     or you can try using different site. <br />
   </p>
-  <div class="input-wrapper">
-    <label class:passErr for="pass">Password</label>
-    <input id="pass" type="password" class:passErr bind:value={password} />
-    <p class="pass-error" class:passErr>Wrong password</p>
-  </div>
-  <div class="button-wrapper">
-    <button on:click={handleCancel} class="secondary">Cancel</button>
-    <button on:click={handleConfirm} class="primary">Confirm</button>
-  </div>
+  <form form on:submit|preventDefault={handleConfirm}>
+    <div class="input-wrapper">
+      <label class:passErr for="pass">Password</label>
+      <input id="pass" type="password" class:passErr bind:value={password} />
+      <p class="pass-error" class:passErr>Wrong password</p>
+    </div>
+    <div class="button-wrapper">
+      <button type="button" on:click={handleCancel} class="secondary">
+        Cancel
+      </button>
+      <button type="submit" class="primary">Confirm</button>
+    </div>
+  </form>
 </div>
 
 <style>

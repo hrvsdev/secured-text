@@ -48,7 +48,7 @@
     const res = await addUser();
     if (res.success) {
       $user = res;
-      $notes = res.user.notes
+      $notes = res.user.notes;
       $showModal = false;
     }
   };
@@ -60,26 +60,30 @@
   <p class="info">
     Make sure to remember the password as there is no way to recover it.
   </p>
-  <div class="input-wrapper">
-    <label class:passErr for="pass">Password</label>
-    <input id="pass" type="password" class:passErr bind:value={password} />
-    <p class="pass-error" class:passErr>Atleast 6 characters</p>
+  <form on:submit|preventDefault={handleConfirm}>
+    <div class="input-wrapper">
+      <label class:passErr for="pass">Password</label>
+      <input id="pass" type="password" class:passErr bind:value={password} />
+      <p class="pass-error" class:passErr>Atleast 6 characters</p>
 
-    <label class:confirmPassErr for="conf-pass">Confirm password </label>
-    <input
-      class:confirmPassErr
-      type="password"
-      id="conf-pass"
-      bind:value={confirmPass}
-    />
-    <p class="confirm-pass-error" class:confirmPassErr>
-      Password aren't matching
-    </p>
-  </div>
-  <div class="button-wrapper">
-    <button on:click={handleCancel} class="secondary">Cancel</button>
-    <button on:click={handleConfirm} class="primary">Confirm</button>
-  </div>
+      <label class:confirmPassErr for="conf-pass">Confirm password </label>
+      <input
+        class:confirmPassErr
+        type="password"
+        id="conf-pass"
+        bind:value={confirmPass}
+      />
+      <p class="confirm-pass-error" class:confirmPassErr>
+        Password aren't matching
+      </p>
+    </div>
+    <div class="button-wrapper">
+      <button type="button" on:click={handleCancel} class="secondary">
+        Cancel
+      </button>
+      <button type="submit" class="primary"> Confirm </button>
+    </div>
+  </form>
 </div>
 
 <style>

@@ -1,5 +1,5 @@
 <script>
-  import axios from "axios"
+  import axios from "axios";
 
   import BackIcon from "../../assets/back.svelte";
   import DeleteIcon from "../../assets/delete.svelte";
@@ -36,7 +36,10 @@
       };
       $currentNote = $notes[$currentNote.id];
     } else {
-      $notes = [...$notes, { id: $notes.length, note: textarea.value }];
+      $notes = [
+        ...$notes,
+        { id: `${$notes.length}`, note: textarea.value },
+      ];
       $currentNote = $notes[$notes.length - 1];
     }
     await handleSave();
