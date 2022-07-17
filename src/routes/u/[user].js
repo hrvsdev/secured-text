@@ -1,3 +1,5 @@
+import bcrypt from "bcryptjs";
+import cryptojs from "crypto-js/aes"
 import connectDB from "$lib/connectDB";
 import User from "../../models/user.model";
 
@@ -22,7 +24,7 @@ export async function post({ request, params }) {
     await connectDB();
     const data = await request.json();
     const user = await User.findOne({ user: param });
-    if (user && user.password === data.password) {
+    if (user && (await bcrypt.compare(data.password, user.password))) {
       return {
         body: {
           user: {

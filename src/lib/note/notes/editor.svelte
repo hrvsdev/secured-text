@@ -24,7 +24,6 @@
       const res = await axios.patch(`/u/${$user.user._id}`, data);
       return res.data;
     } catch (err) {
-      console.log("failure");
       console.log(err);
     }
   };
