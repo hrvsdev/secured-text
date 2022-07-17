@@ -108,7 +108,7 @@
     height: 100%;
     textarea {
       padding: 20px 70px;
-      font-size: 15px;
+      font-size: 16px;
       resize: none;
       border: none;
       width: 100%;

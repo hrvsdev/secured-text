@@ -59,7 +59,7 @@
   }
 
   @media (max-width: 700px) {
-    main {
+    .hero-wrapper {
       margin-top: 40px;
       margin-bottom: 50px;
     }
