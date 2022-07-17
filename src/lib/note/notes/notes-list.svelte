@@ -9,7 +9,7 @@
   };
 
   const onAddClick = () => {
-    $currentNote = { id: "", note: "" };
+    $currentNote = { id: "", note: "", title: "" };
     $isNoteOpen = true;
   };
 </script>
@@ -23,7 +23,7 @@
     <div class="notes-grid-wrapper">
       {#each $notes as note}
         <div class="note-wrapper" on:click={() => onNoteClick(note)}>
-          <h3>Note Title</h3>
+          <h3>{note.title}</h3>
           <p>{note.note}</p>
         </div>
       {/each}
@@ -109,6 +109,8 @@
       font-weight: 600;
       margin-bottom: 3px;
       font-size: 16px;
+      max-height: 20px;
+      overflow: hidden;
     }
   
     p {

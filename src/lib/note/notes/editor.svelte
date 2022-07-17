@@ -9,6 +9,7 @@
   import { currentNote, notes } from "../index.svelte";
   import { isNoteOpen } from "./note.svelte";
 
+  let input;
   let textarea;
 
   const onBackClick = () => {
@@ -33,12 +34,13 @@
       $notes[$notes.indexOf($currentNote)] = {
         ...$currentNote,
         note: textarea.value,
+        title: input.value,
       };
       $currentNote = $notes[$currentNote.id];
     } else {
       $notes = [
         ...$notes,
-        { id: `${$notes.length}`, note: textarea.value },
+        { id: `${$notes.length}`, note: textarea.value, title: input.value },
       ];
       $currentNote = $notes[$notes.length - 1];
     }
@@ -48,7 +50,7 @@
 
   const onDeleteClick = () => {
     $notes = $notes.filter((e, i) => i !== $notes.indexOf($currentNote));
-    $currentNote = { id: "", note: "" };
+    $currentNote = { id: "", note: "", title: "" };
     handleSave();
     $isNoteOpen = false;
   };
@@ -65,6 +67,12 @@
     </div>
   </header>
   <div class="textarea-wrapper">
+    <input
+      type="text"
+      value={$currentNote.title}
+      bind:this={input}
+      placeholder="Title"
+    />
     <textarea
       value={$currentNote.note}
       spellcheck="false"
@@ -106,8 +114,17 @@
 
   .textarea-wrapper {
     height: 100%;
+    padding: 20px 70px;
+
+    input{
+      all: unset;
+      width: 100%;
+      font-size: 25px;
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+
     textarea {
-      padding: 20px 70px;
       font-size: 16px;
       resize: none;
       border: none;
@@ -116,7 +133,7 @@
       height: 100%;
       line-height: 25px;
       font-weight: 400;
-      color: rgb(44, 51, 56);
+      color: rgb(36, 41, 45);
 
       &:focus {
         outline: none;
@@ -134,17 +151,13 @@
 
   @media (max-width: 1000px) {
     .textarea-wrapper {
-      textarea {
-        padding: 20px 45px;
-      }
+      padding: 20px 45px;
     }
   }
 
   @media (max-width: 780px) {
     .textarea-wrapper {
-      textarea {
-        padding: 20px 30px;
-      }
+      padding: 20px 30px;
     }
   }
 

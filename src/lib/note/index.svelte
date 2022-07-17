@@ -5,7 +5,7 @@
   export const notes = writable([]);
 
   // Current selected note
-  export const currentNote = writable({ id: "", note: "" });
+  export const currentNote = writable({ id: "", note: "", title: "" });
 
   // Modal states store
   export const showModal = writable(true);
@@ -17,8 +17,6 @@
 <script>
   import Modal from "./modal/modal.svelte";
   import Note from "./notes/note.svelte";
-
-  $: console.log($currentNote)
 </script>
 
 <Note />
