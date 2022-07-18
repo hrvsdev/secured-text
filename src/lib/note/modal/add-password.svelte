@@ -49,7 +49,7 @@
     if (password.trim() != confirmPass.trim()) return (confirmPassErr = true);
 
     $passHash = genHash(password);
-    $contentHash = genHash(String($notes + $passHash));
+    $contentHash = genHash(String(JSON.stringify($notes) + $passHash));
 
     const res = await addUser();
     if (res.success) {

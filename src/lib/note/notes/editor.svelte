@@ -20,14 +20,18 @@
   };
 
   const handleSave = async () => {
+    const tempContentHash = genHash(String(JSON.stringify($notes) + $passHash));
+    console.log({ contentHash: $contentHash, tempContentHash });
+
     const data = {
       encContent: encObj($notes, $passHash),
-      contentHash: $contentHash,
+      prevContentHash: $contentHash,
+      contentHash: tempContentHash,
     };
 
     try {
       const res = await axios.patch(`/u/${$user.user._id}`, data);
-      $contentHash = genHash(String($notes + $passHash));
+      $contentHash = tempContentHash;
       return res.data;
     } catch (err) {
       console.log(err);
