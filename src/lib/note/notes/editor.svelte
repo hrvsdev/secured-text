@@ -6,8 +6,11 @@
   import SaveIcon from "../../assets/check.svelte";
 
   import { user } from "../../../routes/[user].svelte";
-  import { currentNote, notes } from "../index.svelte";
+  import { contentHash, passHash, currentNote, notes } from "../index.svelte";
   import { isNoteOpen } from "./note.svelte";
+
+  import genHash from "../../../utils/genHash.util";
+  import { encObj } from "../../../utils/encrypt.util";
 
   let input;
   let textarea;
@@ -18,11 +21,13 @@
 
   const handleSave = async () => {
     const data = {
-      notes: $notes,
+      encContent: encObj($notes, $passHash),
+      contentHash: $contentHash,
     };
 
     try {
       const res = await axios.patch(`/u/${$user.user._id}`, data);
+      $contentHash = genHash(String($notes + $passHash));
       return res.data;
     } catch (err) {
       console.log(err);
@@ -116,7 +121,7 @@
     height: 100%;
     padding: 20px 70px;
 
-    input{
+    input {
       all: unset;
       width: 100%;
       font-size: 25px;

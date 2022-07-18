@@ -3,8 +3,9 @@
   import { page } from "$app/stores";
   import { goto } from "$app/navigation";
   import { user } from "../../../routes/[user].svelte";
-  import { notes, showModal } from "../index.svelte";
+  import { contentHash, passHash, notes, showModal } from "../index.svelte";
 
+  import genHash from "../../../utils/genHash.util";
   import { encObj, decObj } from "../../../utils/encrypt.util";
 
   // User param
@@ -27,7 +28,8 @@
   const addUser = async () => {
     const data = {
       user: userParam,
-      encContent: encObj([], password),
+      contentHash: $contentHash,
+      encContent: encObj($notes, $passHash),
     };
 
     try {
@@ -46,10 +48,12 @@
     if (password.trim().length < 6) return (passErr = true);
     if (password.trim() != confirmPass.trim()) return (confirmPassErr = true);
 
+    $passHash = genHash(password);
+    $contentHash = genHash(String($notes + $passHash));
+
     const res = await addUser();
     if (res.success) {
       $user = res;
-      $notes = decObj(res.user.encContent, password);
       $showModal = false;
     }
   };

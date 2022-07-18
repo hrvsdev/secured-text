@@ -3,40 +3,32 @@
   import { goto } from "$app/navigation";
   import { page } from "$app/stores";
   import { user } from "../../../routes/[user].svelte";
-  import { notes, showModal } from "../index.svelte";
+  import { contentHash, passHash, notes, showModal } from "../index.svelte";
+
+  import genHash from "../../../utils/genHash.util";
   import { encObj, decObj } from "../../../utils/encrypt.util";
 
   // Password states
   let passErr = false;
   let password = "";
 
-  // User param
-  const userParam = $page.params.user;
-
   // Cancel button action
   const handleCancel = () => {
     goto("/");
   };
 
-  // Getting user
-  const getUser = async () => {
-    try {
-      const res = await axios.post(`/u/${userParam}`, { password });
-      return res.data;
-    } catch (err) {
-      console.log(err);
-      return err.response.data;
-    }
-  };
-
   // Confirm button action
   const handleConfirm = async () => {
     passErr = false;
-    console.log($user)
-    const content = decObj($user.user.encContent, password);
+
+    const tempPassHash = genHash(password);
+
+    const content = decObj($user.user.encContent, tempPassHash);
     if (content) {
       $notes = content;
       $showModal = false;
+      $contentHash = genHash(String(content + $passHash));
+      $passHash = tempPassHash;
     } else {
       passErr = true;
     }

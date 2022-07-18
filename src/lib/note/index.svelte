@@ -1,5 +1,11 @@
 <script context="module">
   import { writable } from "svelte/store";
+  
+  // User password hash store
+  export const passHash = writable("");
+
+  // User content hash store
+  export const contentHash = writable("")
 
   // User notes store
   export const notes = writable([]);
