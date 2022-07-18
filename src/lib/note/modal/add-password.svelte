@@ -5,6 +5,8 @@
   import { user } from "../../../routes/[user].svelte";
   import { notes, showModal } from "../index.svelte";
 
+  import { encObj, decObj } from "../../../utils/encrypt.util";
+
   // User param
   const userParam = $page.params.user;
 
@@ -25,8 +27,7 @@
   const addUser = async () => {
     const data = {
       user: userParam,
-      password,
-      notes: [],
+      encContent: encObj([], password),
     };
 
     try {
@@ -48,7 +49,7 @@
     const res = await addUser();
     if (res.success) {
       $user = res;
-      $notes = res.user.notes;
+      $notes = decObj(res.user.encContent, password);
       $showModal = false;
     }
   };

@@ -1,5 +1,5 @@
 import bcrypt from "bcryptjs";
-import cryptojs from "crypto-js/aes"
+import cryptojs from "crypto-js/aes";
 import connectDB from "$lib/connectDB";
 import User from "../../models/user.model";
 
@@ -8,7 +8,7 @@ export async function get({ params }) {
   try {
     await connectDB();
     const user = await User.findOne({ user: param });
-    if (user) return { body: { success: true } };
+    if (user) return { body: { user, success: true } };
     else return { body: { success: false } };
   } catch (err) {
     return {
@@ -24,16 +24,9 @@ export async function post({ request, params }) {
     await connectDB();
     const data = await request.json();
     const user = await User.findOne({ user: param });
-    if (user && (await bcrypt.compare(data.password, user.password))) {
+    if (user) {
       return {
-        body: {
-          user: {
-            _id: user._id,
-            user: user.user,
-            notes: user.notes,
-          },
-          success: true,
-        },
+        body: { user, success: true },
       };
     } else
       return { status: 401, body: { msg: "wrong password", success: false } };

@@ -4,6 +4,7 @@
   import { page } from "$app/stores";
   import { user } from "../../../routes/[user].svelte";
   import { notes, showModal } from "../index.svelte";
+  import { encObj, decObj } from "../../../utils/encrypt.util";
 
   // Password states
   let passErr = false;
@@ -31,10 +32,10 @@
   // Confirm button action
   const handleConfirm = async () => {
     passErr = false;
-    const res = await getUser();
-    if (res.success) {
-      $user = res;
-      $notes = res.user.notes;
+    console.log($user)
+    const content = decObj($user.user.encContent, password);
+    if (content) {
+      $notes = content;
       $showModal = false;
     } else {
       passErr = true;

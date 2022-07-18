@@ -6,20 +6,10 @@ export async function post({ request }) {
   try {
     await connectDB();
     const data = await request.json();
-    const user = new User({
-      ...data,
-      password: await bcrypt.hash(data.password, 10),
-    });
+    const user = new User(data);
     await user.save();
     return {
-      body: {
-        user: {
-          _id: user._id,
-          user: user.user,
-          notes: user.notes,
-        },
-        success: true,
-      },
+      body: { user, success: true },
     };
   } catch (err) {
     console.log(err);

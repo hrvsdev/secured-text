@@ -3,8 +3,8 @@ import mongoose from "mongoose";
 const userSchema = new mongoose.Schema(
   {
     user: { type: String, unique: true, required: true, trim: true },
-    password: String,
-    notes: Array,
+    contentHash: String,
+    encContent: String,
   },
   { versionKey: false }
 );
