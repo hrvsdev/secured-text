@@ -21,7 +21,6 @@
 
   const handleSave = async () => {
     const tempContentHash = genHash(String(JSON.stringify($notes) + $passHash));
-    console.log({ contentHash: $contentHash, tempContentHash });
 
     const data = {
       encContent: encObj($notes, $passHash),

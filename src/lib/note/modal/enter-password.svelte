@@ -27,9 +27,8 @@
     if (content) {
       $notes = content;
       $showModal = false;
-      $contentHash = genHash(String(JSON.stringify(content) + $passHash));
-      console.log($contentHash)
       $passHash = tempPassHash;
+      $contentHash = genHash(String(JSON.stringify(content) + $passHash));
     } else {
       passErr = true;
     }

@@ -8,7 +8,6 @@
   export async function load({ fetch, params }) {
     const res = await fetch(`/u/${params.user}`);
     const data = await res.json();
-    console.log(data)
     return {
       props: { data },
     };
