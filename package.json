@@ -19,9 +19,7 @@
 	"type": "module",
 	"dependencies": {
 		"axios": "^0.27.2",
-		"bcryptjs": "^2.4.3",
 		"crypto-js": "^4.1.1",
-		"lodash": "^4.17.21",
 		"mongoose": "^6.4.4"
 	}
 }
