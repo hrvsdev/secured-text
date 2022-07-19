@@ -16,7 +16,7 @@
 
 <aside>
   <header>
-    <h2>Secured Text</h2>
+    <h1 class="logo-wrapper">Secured <span>text</span></h1>
     <div class="icon" on:click={onAddClick}><PlusIcon /></div>
   </header>
   {#if $notes.length}
@@ -53,9 +53,18 @@
     padding: 0 25px;
     flex-shrink: 0;
 
-    h2 {
+    h1 {
+      font-family: "Merienda";
       font-size: 20px;
-      font-weight: 600;
+      letter-spacing: -1px;
+      span {
+        font-family: inherit;
+        letter-spacing: -1px;
+        background-color: black;
+        border-radius: 6px;
+        padding: 0 6px;
+        color: white;
+      }
     }
 
     .icon {

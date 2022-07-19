@@ -5,7 +5,7 @@
 <nav>
   <div class="nav-wrapper">
     <div class="left-side">
-      <div class="logo-wrapper">Secured Text</div>
+      <h1 class="logo-wrapper">Secured <span>text</span></h1>
     </div>
     <div class="right-side">
       <div class="icon-wrapper">
@@ -15,7 +15,7 @@
   </div>
 </nav>
 
-<style>
+<style lang="scss">
   nav {
     display: flex;
     justify-content: center;
@@ -33,8 +33,17 @@
   }
 
   .logo-wrapper {
+    font-family: "Merienda";
     font-size: 25px;
-    font-weight: 700;
+    letter-spacing: -1px;
+    span{
+      font-family: inherit;
+      letter-spacing: -1px;
+      background-color: black;
+      border-radius: 6px;
+      padding: 0 6px;
+      color: white;
+    }
   }
 
   .icon-wrapper {
