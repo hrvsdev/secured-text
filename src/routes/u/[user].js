@@ -7,8 +7,13 @@ export async function get({ params }) {
   try {
     await connectDB();
     const user = await User.findOne({ user: param });
-    delete user._id;
-    if (user) return { body: { user, success: true } };
+    if (user)
+      return {
+        body: {
+          user: { user: user.user, encContent: user.encContent },
+          success: true,
+        },
+      };
     else return { body: { success: false } };
   } catch (err) {
     return {

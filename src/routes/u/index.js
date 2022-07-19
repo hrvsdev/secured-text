@@ -7,9 +7,11 @@ export async function post({ request }) {
     const data = await request.json();
     const user = new User(data);
     await user.save();
-    delete user._id
     return {
-      body: { user, success: true },
+      body: {
+        user: { user: user.user, encContent: user.encContent },
+        success: true,
+      },
     };
   } catch (err) {
     console.log(err);
