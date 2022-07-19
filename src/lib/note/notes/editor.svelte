@@ -6,13 +6,14 @@
   import SaveIcon from "../../assets/check.svelte";
 
   import { user } from "../../../routes/[user].svelte";
-  import { contentHash, passHash, currentNote, notes } from "../index.svelte";
+  import { contentHash, passHash } from "../index.svelte";
+  import { showModal, currentNote, notes } from "../index.svelte";
   import { isNoteOpen } from "./note.svelte";
 
   import genHash from "../../../utils/genHash.util";
   import { encObj } from "../../../utils/encrypt.util";
 
-  let input;
+  let input = "";
   let textarea;
 
   const onBackClick = () => {
@@ -38,6 +39,7 @@
   };
 
   const onSaveClick = () => {
+    if (!(input.value.trim() || textarea.value.trim())) return onDeleteClick();
     if ($currentNote.id) {
       $notes[$notes.indexOf($currentNote)] = {
         ...$currentNote,
@@ -57,13 +59,26 @@
   };
 
   const onDeleteClick = () => {
+    if (!$currentNote.id) return;
     $notes = $notes.filter((e, i) => i !== $notes.indexOf($currentNote));
     $currentNote = { id: "", note: "", title: "" };
     handleSave();
     $isNoteOpen = false;
   };
+
+  const onShortcutKey = (e) => {
+    if ($showModal) return;
+    if (e.ctrlKey && (e.key === "s" || e.key === "S")) {
+      e.preventDefault();
+      onSaveClick();
+    } else if (e.key === "Delete") {
+      e.preventDefault();
+      onDeleteClick();
+    }
+  };
 </script>
 
+<svelte:window on:keydown={onShortcutKey} />
 <div class="editor-wrapper">
   <header>
     <div class="left-wrapper">
