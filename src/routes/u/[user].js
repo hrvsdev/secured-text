@@ -7,6 +7,7 @@ export async function get({ params }) {
   try {
     await connectDB();
     const user = await User.findOne({ user: param });
+    delete user._id;
     if (user) return { body: { user, success: true } };
     else return { body: { success: false } };
   } catch (err) {
@@ -17,13 +18,12 @@ export async function get({ params }) {
   }
 }
 
-
 export async function patch({ request, params }) {
-  const id = params.user;
+  const param = params.user;
   try {
     await connectDB();
     const data = await request.json();
-    const user = await User.findById(id);
+    const user = await User.findOne({ user: param });
     if (user) {
       if (user.contentHash === data.prevContentHash) {
         user.contentHash = data.contentHash;

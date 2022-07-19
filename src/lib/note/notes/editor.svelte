@@ -30,7 +30,7 @@
     };
 
     try {
-      const res = await axios.patch(`/u/${$user.user._id}`, data);
+      const res = await axios.patch(`/u/${$user.user.user}`, data);
       $contentHash = tempContentHash;
       return res.data;
     } catch (err) {

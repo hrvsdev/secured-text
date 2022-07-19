@@ -7,6 +7,7 @@ export async function post({ request }) {
     const data = await request.json();
     const user = new User(data);
     await user.save();
+    delete user._id
     return {
       body: { user, success: true },
     };
