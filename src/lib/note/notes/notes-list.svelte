@@ -64,6 +64,11 @@
       justify-content: center;
       align-items: center;
       color: rgb(100, 105, 112);
+      will-change: transform;
+      transition: all 100ms;
+      &:active {
+        transform: scale(1.1);
+      }
     }
   }
 
@@ -76,13 +81,13 @@
     padding: 20px;
     text-align: center;
 
-    h3{
+    h3 {
       margin-bottom: 6px;
       font-size: 18px;
       font-weight: 600;
     }
 
-    p{
+    p {
       font-size: 16px;
       color: rgb(104, 112, 118);
       line-height: 22px;
@@ -112,7 +117,7 @@
       max-height: 20px;
       overflow: hidden;
     }
-  
+
     p {
       color: rgb(104, 112, 118);
       font-size: 15px;
@@ -120,7 +125,6 @@
       overflow: hidden;
     }
   }
-
 
   @media (max-width: 900px) {
     aside {

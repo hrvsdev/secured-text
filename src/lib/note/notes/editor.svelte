@@ -131,6 +131,11 @@
         justify-content: center;
         align-items: center;
         color: rgb(100, 105, 112);
+        will-change: transform;
+        transition: all 100ms;
+        &:active {
+          transform: scale(1.1);
+        }
       }
     }
   }
