@@ -1,10 +1,11 @@
 <script>
+  import dashify from "dashify";
   import { goto } from "$app/navigation";
 
   let value = "";
 
   const handleSubmit = () => {
-    goto(value);
+    goto(dashify(value));
   };
 </script>
 

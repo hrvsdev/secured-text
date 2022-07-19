@@ -9,14 +9,12 @@
   export async function load({ fetch, params }) {
     const dashUser = dashify(params.user);
     if (dashUser === params.user) {
-      console.log("matched")
       const res = await fetch(`/u/${params.user}`);
       const data = await res.json();
       return {
         props: { data },
       };
     } else {
-      console.log("redirecting")
       return {
         status: 302,
         redirect: dashUser,
