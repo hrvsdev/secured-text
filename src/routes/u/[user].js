@@ -1,4 +1,3 @@
-import cryptojs from "crypto-js/aes";
 import connectDB from "$lib/connectDB";
 import User from "../../models/user.model";
 
