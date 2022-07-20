@@ -1,6 +1,6 @@
 <script>
   import FeatureCard from "./feature-card.svelte";
-  import ShieldIcon from "../assets/shield.svelte";
+  import ShieldIcon from "$lib/assets/shield.svelte";
 </script>
 
 <div class="features-wrapper">

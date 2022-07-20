@@ -2,6 +2,8 @@
   import { slide } from "svelte/transition";
   import { cubicOut } from "svelte/easing";
 
+  import ArrowIcon from "$lib/assets/arrow.svelte";
+
   let open = false;
 
   const openAccordion = () => (open = !open);
@@ -15,7 +17,7 @@
 <div class="accordion-item">
   <div class="accordion-heading-wrapper" on:click={openAccordion} class:open>
     <h2><slot name="heading" /></h2>
-    <span class="arrow-wrapper">&#8249;</span>
+    <span class="arrow-wrapper"><ArrowIcon /></span>
   </div>
   {#if open}
     <p class="accordion-details" transition:slide={anim}>
@@ -28,29 +30,32 @@
   .accordion-item {
     border-bottom: 1px solid #ccc;
     cursor: pointer;
-    padding-right: 10px;
+    padding: 0 2px;
   }
 
   .accordion-heading-wrapper {
     display: flex;
+    height: 60px;
     justify-content: space-between;
     align-items: center;
   }
 
   h2 {
-    padding: 15px 0;
     font-weight: 600;
     font-size: 22px;
   }
 
   .arrow-wrapper {
     transition: all 200ms ease-out;
-    font-size: 30px;
-    color: #aaaaaa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .accordion-details {
-    padding-bottom: 20px;
+    cursor: text;
+    transform: translateY(-6px);
+    margin-bottom: 18px;
     font-size: 17px;
     color: rgb(104, 112, 118);
     line-height: 24px;

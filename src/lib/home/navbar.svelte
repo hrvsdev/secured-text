@@ -1,5 +1,5 @@
 <script>
-  import GithubIcon from "../assets/github.svelte";
+  import GithubIcon from "$lib/assets/github.svelte";
 </script>
 
 <nav>
