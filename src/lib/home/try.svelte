@@ -1,28 +1,21 @@
 <script>
-  import { nanoid } from "nanoid";
-  import { encObj } from "../../utils/encrypt.util";
+  import genPass from "../../utils/genPassAndHash.util";
   import genHash from "../../utils/genHash.util";
+  import { encObj } from "../../utils/encrypt.util";
 
-  let value = "";
-  let tempPass = nanoid(10);
-
+  let value = ""
+  let { pass, passHash } = genPass();
   $: content = [{ value }];
 
-  let genPH = () => genHash(tempPass);
-  let hashedContent = genHash(String(JSON.stringify(content) + genPH()));
-  let encContent = encObj(content, genPH());
-
-  $: {
-    hashedContent = genHash(String(JSON.stringify(content) + genPH()));
-    encContent = encObj(content, genPH());
-  }
+  let hashedContent = genHash(String(JSON.stringify(content) + passHash));
+  let encContent = encObj(content, passHash);
 </script>
 
 <section class="try-box-wrapper">
   <div class="try-box-content-wrapper">
     <div class="try-box-text">
       <h1>See it in action</h1>
-      <p>We are using <span>{tempPass}</span> as a temporary password.</p>
+      <p>We are using <span>{pass}</span> as a temporary password.</p>
     </div>
     <div class="try-section">
       <div class="textarea-wrapper">
@@ -35,7 +28,7 @@
         </div>
         <div class="encrypted-content">
           <h3>Encrypted Content</h3>
-          <p>{encContent}</p>
+          <!-- <p>{encContent}</p> -->
         </div>
       </div>
     </div>

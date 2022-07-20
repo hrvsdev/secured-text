@@ -1,7 +1,7 @@
-import { SHA512 } from "crypto-js";
+import Cr from "crypto-js";
 
 const genHash = (string) => {
-  return SHA512(string).toString();
+  return Cr.SHA512(string).toString();
 };
 
 
