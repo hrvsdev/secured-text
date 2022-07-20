@@ -3,7 +3,7 @@
   import ShieldIcon from "$lib/assets/shield.svelte";
 </script>
 
-<div class="features-wrapper">
+<section class="features-wrapper">
   <div class="features-text">
     <h1>Why it is better and safer?</h1>
     <p>Beacuse Secured Text has features that no one is willing to offer!</p>
@@ -58,11 +58,12 @@
       </svelte:fragment>
     </FeatureCard>
   </div>
-</div>
+</section>
 
 <style lang="scss">
   .features-wrapper {
     padding: 0 25px;
+    margin-bottom: 80px;
   }
 
   .features-text {
@@ -91,7 +92,6 @@
     display: grid;
     gap: 30px;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    margin-bottom: 50px;
   }
 
   @media (max-width: 700px) {
@@ -103,6 +103,10 @@
       p {
         font-size: 16px;
       }
+    }
+
+    .features-wrapper {
+      margin-bottom: 60px ;
     }
   }
 
@@ -118,6 +122,10 @@
         width: 100%;
         text-align: left;
       }
+    }
+
+    .features-wrapper {
+      margin-bottom: 50px ;
     }
   }
 </style>

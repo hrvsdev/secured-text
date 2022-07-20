@@ -15,6 +15,6 @@
 
 <style>
   svg {
-    color: rgb(165, 165, 165);
+    color: rgb(100, 100, 100);
   }
 </style>

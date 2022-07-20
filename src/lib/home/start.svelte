@@ -9,7 +9,7 @@
   };
 </script>
 
-<div id="start" class="start-wrapper">
+<section id="start" class="start-wrapper">
   <h1>Get Started</h1>
   <p>
     Enter some words to start. It will automatically make your words url
@@ -21,7 +21,7 @@
     </div>
     <button>Continue</button>
   </form>
-</div>
+</section>
 
 <style lang="scss">
   .start-wrapper {
@@ -75,6 +75,11 @@
   }
 
   @media (max-width: 700px) {
+
+    .start-wrapper{
+      margin-bottom: 60px;
+    }
+
     h1 {
       font-size: 25px;
     }
@@ -85,6 +90,11 @@
   }
 
   @media (max-width: 500px) {
+
+    .start-wrapper{
+      margin-bottom: 50px;
+    }
+
     h1 {
       width: 100%;
       text-align: left;

@@ -16,7 +16,7 @@
 
 <div class="accordion-item">
   <div class="accordion-heading-wrapper" on:click={openAccordion} class:open>
-    <h2><slot name="heading" /></h2>
+    <h3><slot name="heading" /></h3>
     <span class="arrow-wrapper"><ArrowIcon /></span>
   </div>
   {#if open}
@@ -28,7 +28,7 @@
 
 <style lang="scss">
   .accordion-item {
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid rgb(223, 227, 230);
     cursor: pointer;
     padding: 0 2px;
   }
@@ -40,9 +40,9 @@
     align-items: center;
   }
 
-  h2 {
+  h3 {
     font-weight: 600;
-    font-size: 22px;
+    font-size: 20px;
   }
 
   .arrow-wrapper {
@@ -64,6 +64,13 @@
   .open {
     .arrow-wrapper {
       transform: rotate(-90deg);
+    }
+  }
+
+  @media (max-width: 700px) {
+    .accordion-details {
+      font-size: 16px;
+      line-height: 22px;
     }
   }
 </style>
