@@ -3,6 +3,7 @@
   import Hero from "./hero.svelte";
   import Start from "./start.svelte";
   import Features from "./features.svelte";
+  import Accordion from "./accordion.svelte";
 </script>
 
 <main>
@@ -10,4 +11,5 @@
   <Hero />
   <Start />
   <Features />
+  <Accordion/>
 </main>
