@@ -6,7 +6,7 @@
   import { contentHash, passHash, notes, showModal } from "../index.svelte";
 
   import genHash from "../../../utils/genHash.util";
-  import { encObj, decObj } from "../../../utils/encrypt.util";
+  import { encObj } from "../../../utils/encrypt.util";
 
   // User param
   const userParam = $page.params.user;
