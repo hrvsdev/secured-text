@@ -22,7 +22,6 @@
 		"axios": "^0.27.2",
 		"crypto-js": "^4.1.1",
 		"dashify": "^2.0.0",
-		"generate-password": "^1.7.0",
 		"mongoose": "^6.4.4",
 		"nanoid": "^4.0.0"
 	}
