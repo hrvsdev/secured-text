@@ -3,12 +3,19 @@
   import genHash from "../../utils/genHash.util";
   import { encObj } from "../../utils/encrypt.util";
 
-  let value = ""
+  let value = "";
   let { pass, passHash } = genPass();
-  $: content = [{ value }];
+  let content = [{ value }];
 
   let hashedContent = genHash(String(JSON.stringify(content) + passHash));
   let encContent = encObj(content, passHash);
+
+  const onInput = (e) => {
+    value = e.target.value;
+    content = [{ value }];
+    hashedContent = genHash(String(JSON.stringify(content) + passHash));
+    encContent = encObj(content, passHash);
+  };
 </script>
 
 <section class="try-box-wrapper">
@@ -19,7 +26,7 @@
     </div>
     <div class="try-section">
       <div class="textarea-wrapper">
-        <textarea bind:value placeholder="Your text goes here ..." />
+        <textarea on:input={onInput} placeholder="Your text goes here ..." />
       </div>
       <div class="output-wrapper">
         <div class="hashed-content">
@@ -28,7 +35,7 @@
         </div>
         <div class="encrypted-content">
           <h3>Encrypted Content</h3>
-          <!-- <p>{encContent}</p> -->
+          <p>{encContent}</p>
         </div>
       </div>
     </div>
@@ -61,18 +68,27 @@
     p {
       text-align: center;
       font-size: 18px;
-      color: rgb(105, 111, 117);
+      color: rgb(104, 112, 118);
+      span {
+        background-color: #cee4fe;
+        color: #0072f5;
+        border-radius: 5px;
+        padding: 2px 5px;
+        font-family: "Fira Code";
+        font-size: 16px;
+      }
     }
   }
 
   .try-section {
+    box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
+      rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+    background-color: white;
     display: grid;
     height: 300px;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 1fr;
     border-radius: 10px;
-    box-shadow: rgb(104 112 118 / 7%) 0px 2px 8px 2px,
-      rgb(104 112 118 / 4%) 0px 2px 4px -1px;
   }
 
   .textarea-wrapper {
@@ -100,7 +116,7 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
-    row-gap: 30px;
+    row-gap: 20px;
 
     h3 {
       font-weight: 600;
@@ -108,10 +124,15 @@
     }
 
     p {
+      font-family: "Fira Code";
       color: rgb(104, 112, 118);
       word-break: break-all;
-      /* overflow: ; */
+      /* overflow-x: scroll; */
     }
+  }
+  
+  @media (max-width: 800px) {
+    
   }
 
   @media (max-width: 700px) {

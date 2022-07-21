@@ -62,8 +62,9 @@
 
 <style lang="scss">
   .features-wrapper {
-    padding: 0 25px;
+    position: relative;
     margin-bottom: 80px;
+    padding: 0 25px;
   }
 
   .features-text {
