@@ -94,9 +94,10 @@
   .textarea-wrapper {
     border-right: 1px solid #ccc;
     textarea {
-      border-radius: 10px;
       padding: 20px;
+      border-radius: 10px;
       font-size: 16px;
+      min-height: 200px;
       resize: none;
       border: none;
       width: 100%;
@@ -127,12 +128,32 @@
       font-family: "Fira Code";
       color: rgb(104, 112, 118);
       word-break: break-all;
-      /* overflow-x: scroll; */
+    }
+
+    .encrypted-content {
+      p {
+        max-height: 104px;
+        overflow-y: scroll;
+        scrollbar-width: none;
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      }
     }
   }
-  
+
   @media (max-width: 800px) {
-    
+    .try-section {
+      height: auto;
+      grid-template-columns: 1fr;
+      grid-auto-rows: minmax(min-content, max-content);
+      border-radius: 10px;
+    }
+
+    .textarea-wrapper {
+      border-right: 0;
+      border-bottom: 1px solid #ccc;
+    }
   }
 
   @media (max-width: 700px) {
