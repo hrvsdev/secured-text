@@ -44,7 +44,12 @@
 
 <style lang="scss">
   .try-box-wrapper {
-    padding: 0 35px;
+    padding: 40px 35px 50px;
+    background: linear-gradient(
+      135deg,
+      rgba(191, 219, 254, 1) 0%,
+      rgba(184, 231, 253, 1) 66%
+    );
     margin-bottom: 80px;
   }
 
@@ -68,14 +73,13 @@
     p {
       text-align: center;
       font-size: 18px;
-      color: rgb(104, 112, 118);
+      color: rgb(80, 80, 80);
       span {
-        background-color: #cee4fe;
-        color: #0072f5;
+        background-color: white;
         border-radius: 5px;
         padding: 2px 5px;
         font-family: "Fira Code";
-        font-size: 16px;
+        font-size: 15px;
       }
     }
   }
@@ -168,6 +172,10 @@
 
       p {
         font-size: 16px;
+        span{
+          font-size: 13px;
+          padding: 1px 5px;
+        }
       }
     }
   }
