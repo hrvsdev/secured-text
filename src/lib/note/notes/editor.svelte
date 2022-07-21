@@ -142,10 +142,13 @@
 
   .textarea-wrapper {
     height: 100%;
-    padding: 20px 70px;
+    padding: 20px 0;
+    padding-left: 70px;
 
     input {
       all: unset;
+      padding-right: 70px;
+      box-sizing: border-box;
       width: 100%;
       font-size: 25px;
       margin-bottom: 10px;
@@ -154,11 +157,12 @@
 
     textarea {
       font-size: 16px;
+      padding-right: 70px;
+      height: calc(100vh - 140px);
       resize: none;
       border: none;
       width: 100%;
-      scrollbar-width: 0;
-      height: 100%;
+      min-height: 300px;
       line-height: 25px;
       font-weight: 400;
       color: rgb(36, 41, 45);
@@ -179,13 +183,21 @@
 
   @media (max-width: 1000px) {
     .textarea-wrapper {
-      padding: 20px 45px;
+      padding-left: 45px;
+      input,
+      textarea {
+        padding-right: 45px;
+      }
     }
   }
 
   @media (max-width: 780px) {
     .textarea-wrapper {
-      padding: 20px 30px;
+      padding-left: 30px;
+      input,
+      textarea {
+        padding-right: 30px;
+      }
     }
   }
 
