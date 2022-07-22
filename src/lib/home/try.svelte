@@ -85,9 +85,11 @@
   }
 
   .try-section {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: saturate(180%) blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
       rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
-    background-color: white;
     display: grid;
     height: 300px;
     grid-template-columns: repeat(2, 1fr);
@@ -98,6 +100,7 @@
   .textarea-wrapper {
     border-right: 1px solid #ccc;
     textarea {
+      background: transparent;
       padding: 20px;
       border-radius: 10px;
       font-size: 16px;
@@ -172,7 +175,7 @@
 
       p {
         font-size: 16px;
-        span{
+        span {
           font-size: 13px;
           padding: 1px 5px;
         }

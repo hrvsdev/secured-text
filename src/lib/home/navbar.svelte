@@ -9,7 +9,13 @@
     </div>
     <div class="right-side">
       <div class="icon-wrapper">
-        <a href="/" class="icon"><GithubIcon /></a>
+        <a
+          href="https://github.com/hrvsdev/secured-text"
+          target="_blank"
+          class="icon"
+        >
+          <GithubIcon />
+        </a>
       </div>
     </div>
   </div>
@@ -22,7 +28,7 @@
     align-items: center;
     height: 76px;
     padding: 0 35px;
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+    border-bottom: 1px solid rgb(239, 239, 239);
   }
 
   .nav-wrapper {
@@ -36,7 +42,7 @@
     font-family: "Merienda";
     font-size: 25px;
     letter-spacing: -1px;
-    span{
+    span {
       font-family: inherit;
       letter-spacing: -1px;
       background-color: black;
@@ -63,7 +69,7 @@
   .icon:hover {
     opacity: 1;
   }
-  
+
   .icon:active {
     transform: scale(1.05);
   }
