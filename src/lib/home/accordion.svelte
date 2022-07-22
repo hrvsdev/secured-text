@@ -88,9 +88,9 @@
           </li>
           <br />
           <li>
-            In this whole process, the only data is recived from the server is
-            when user opens a site and after that data is only send. The data
-            that is sent and recidved is previous and current content hash,
+            In this whole process, the only time data is recived from the server is
+            when user opens a site and after that data is only sent. The data
+            that is sent and recieved is previous and current content hash,
             encrypted data and the site name.
           </li>
           <li>
