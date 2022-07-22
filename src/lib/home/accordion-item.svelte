@@ -35,14 +35,14 @@
 
   .accordion-heading-wrapper {
     display: flex;
-    height: 60px;
+    padding: 18px 0;
     justify-content: space-between;
     align-items: center;
   }
 
   h3 {
     font-weight: 600;
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .arrow-wrapper {
@@ -57,7 +57,7 @@
     transform: translateY(-6px);
     margin-bottom: 18px;
     font-size: 17px;
-    color: rgb(104, 112, 118);
+    color: rgb(65 71 76);
     line-height: 24px;
   }
 

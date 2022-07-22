@@ -46,4 +46,19 @@
       }
     }
   }
+
+  @media (max-width: 600px) {
+    footer {
+      margin-top: 60px;
+      padding: 15px 35px;
+    }
+
+    .footer-wrapper {
+      flex-direction: column;
+      justify-content: center;
+      row-gap: 10px;
+      font-size: 15px;
+      align-items: center;
+    }
+  }
 </style>

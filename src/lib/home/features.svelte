@@ -53,7 +53,7 @@
       <svelte:fragment slot="icon"><ShieldIcon /></svelte:fragment>
       <svelte:fragment slot="heading">Lightning Fast</svelte:fragment>
       <svelte:fragment slot="para">
-        The whole app is well optimized and is very fast. You will never face
+        The app is well optimized and works very fast. You will never face
         delay or any latency while working.
       </svelte:fragment>
     </FeatureCard>
