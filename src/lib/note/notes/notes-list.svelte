@@ -131,6 +131,7 @@
       color: rgb(104, 112, 118);
       font-size: 15px;
       max-height: 38px;
+      white-space: pre-line;
       overflow: hidden;
     }
   }
