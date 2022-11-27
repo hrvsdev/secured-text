@@ -12,8 +12,7 @@
 <section id="start" class="start-wrapper">
   <h1>Get Started</h1>
   <p>
-    Enter some words to start. It will automatically make your words url
-    friendly.
+    Enter some words to choose your URL username. It will automatically make your username url friendly.
   </p>
   <form on:submit|preventDefault={handleSubmit}>
     <div class="input-wrapper">
