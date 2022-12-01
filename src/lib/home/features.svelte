@@ -14,7 +14,7 @@
       <svelte:fragment slot="heading">No User Info</svelte:fragment>
       <svelte:fragment slot="para">
         We never ask or store any personal information of users. All it needs a
-        word and a password for security.
+        username and a password for security.
       </svelte:fragment>
     </FeatureCard>
     <FeatureCard>
